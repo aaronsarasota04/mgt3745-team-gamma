@@ -16,6 +16,7 @@
 | Name | Role | GitHub | Contact hours (ET) |
 |---|---|---|---|
 | Nuhamin | Implementer | @nuhamin22| 5-8pm |
+| Aaron   | Implementer | @aaronsarasota4 |Tuesday: noon- midnight .All other days: 8pm- midnight |
 
 ## RACI Matrix (Phase 1)
 
@@ -43,7 +44,7 @@ Teams of four: delete the Evaluator column.
 
 | Member | Phase 1 | Phase 2 | Final |
 |---|---|---|---|
-| <name> | <role> | <role> | <role> |
+| Aaron | Implementer | Architect | Reviewer |
 
 Nobody holds the same role twice, and every role is filled in every phase.
 
