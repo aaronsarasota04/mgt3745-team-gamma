@@ -2,13 +2,13 @@
 # Every path needs two owners so that nobody approves their own work.
 # Last matching pattern wins. Owners must have write access to this repository.
 #
-*                         @cad3nnn @nuhamin2234 @aaronsarasota4
+*                         @cad3nnn @nuhamin2234 @aaronsarasota04
 /context/PROJECT.md       @Daedruoy @cad3nnn
 /context/USERS.md         @Daedruoy @cad3nnn
 /context/FEATURES.md      @Daedruoy @cad3nnn
 /context/ARCHITECTURE.md  @ryanlinde-gif @cad3nnn
 /context/EVALS.md         @cad3nnn @Daedruoy
-/context/CLAUDE.md        @nuhamin2234 @aaronsarasota4 @ryanlinde-gif
-/context/STANDARDS.md     @nuhamin2234 @aaronsarasota4 @ryanlinde-gif
-/context/TOOLS.md         @nuhamin2234 @aaronsarasota4 @ryanlinde-gif
-/docs/                    @cad3nnn @nuhamin2234 @aaronsarasota4
+/context/CLAUDE.md        @nuhamin2234 @aaronsarasota04 @ryanlinde-gif
+/context/STANDARDS.md     @nuhamin2234 @aaronsarasota04 @ryanlinde-gif
+/context/TOOLS.md         @nuhamin2234 @aaronsarasota04 @ryanlinde-gif
+/docs/                    @cad3nnn @nuhamin2234 @aaronsarasota04
