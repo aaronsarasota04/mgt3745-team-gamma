@@ -15,6 +15,7 @@
 
 | Name | Role | GitHub | Contact hours (ET) |
 |---|---|---|---|
+| Nuhamin | Implementer | @nuhamin22| 5-8pm |
 
 ## RACI Matrix (Phase 1)
 
