@@ -16,6 +16,7 @@
 | Name | Role | GitHub | Contact hours (ET) |
 |---|---|---|---|
 | Ryan Linde | Architect | @ryanlinde-gif | Any day after 4:00 PM |
+| Nuhamin | Implementer | @nuhamin22| 5-8pm |
 
 ## RACI Matrix (Phase 1)
 
