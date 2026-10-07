@@ -18,7 +18,7 @@ than asserted afterwards.
 | Criterion | Weight (1 to 5) | Why |
 |---|---|---|
 | Fits the job the student is hiring this tool for | 5 | A tool that lists openings without telling a student what to learn next is a job board, and job boards already exist. If it misses this, nothing else it does matters. |
-| Team capability in three weeks | 4 | All four of us deployed a Cloudflare Worker and a D1 database in HW4 and HW5. Three weeks leaves no room to learn a platform none of us has shipped on. |
+| Team capability in three weeks | 4 | All five of us deployed a Cloudflare Worker and a D1 database in HW4 and HW5. Three weeks leaves no room to learn a platform none of us has shipped on. |
 | Switching cost | 3 | Scored from experience rather than guessed: moving data out of the browser in HW4 cost each of us an evening, and `wrangler d1 export` produced a portable file. We know what this number means now. |
 | Control of user data | 4 | The system holds a student's own account of what they do not know yet, and which roles they are targeting. Not regulated data, but the kind a user would not want their current employer to read. |
 | Cost | 2 | Free tiers exist for every option under consideration. Cost only becomes real past the course, and nothing here is intended to outlive it. |
@@ -33,7 +33,7 @@ added in the scores commit.
 Scored after the weights above were committed and opened for review. The three
 options are the course's standard doors, read for this problem:
 
-- **Build** — our own Cloudflare Worker, a D1 database, and a static page, the stack all four of us deployed in HW4 and HW5.
+- **Build** — our own Cloudflare Worker, a D1 database, and a static page, the stack all five of us deployed in HW4 and HW5.
 - **Buy** — an existing skills or job-data product: a job board with skill extraction, a learning-path catalogue, or a postings API.
 - **Delegate** — bolt.new generates the application from our spec and hosts it.
 
