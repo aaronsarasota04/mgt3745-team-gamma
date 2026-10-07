@@ -15,7 +15,7 @@
 
 | Name | Role | GitHub | Contact hours (ET) |
 |---|---|---|---|
-
+| Nuhamin | Implementer | @nuhamin22 | Monday 5-8pm |
 ## RACI Matrix (Phase 1)
 
 R = Responsible (does the work), A = Accountable (answers for it; exactly one person, always a person), C = Consulted (asked before), I = Informed (told after). AI tools may be R or C and are never A. Every row where AI is R names the human A beside it.
