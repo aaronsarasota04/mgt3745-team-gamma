@@ -17,13 +17,16 @@ Claude drafted this table. Prince checked each classification against the resear
 
 ### F1. Skill Gap for a Target Role (J-Devon)
 
-- F1-1. THE SYSTEM SHALL let a student enter the skills they already have and one target role.
+- F1-1. THE SYSTEM SHALL let a student enter the skills they already have and choose one target role from the roles in the posting set. (PROBE-001 #3)
 - F1-2. WHEN a student submits skills and a target role, THE SYSTEM SHALL list the skills that appear in postings for that role and are missing from the student's list.
 - F1-3. THE SYSTEM SHALL match skills without regard to capitalization or extra spaces.
 - F1-4. THE SYSTEM SHALL show the date the posting set was collected next to every result, so a student does not read a frozen snapshot as current.
 - F1-5. IF the student enters no skills, THEN THE SYSTEM SHALL ask for at least one skill and SHALL NOT show a result.
 - F1-6. IF the target role has no postings in the data set, THEN THE SYSTEM SHALL say so, naming the role, and SHALL NOT show a gap.
 - F1-7. IF the student already has every skill in the postings for the role, THEN THE SYSTEM SHALL say no gap was found instead of showing an empty list.
+- F1-8. THE SYSTEM SHALL read postings only through the team's own API, and SHALL NOT hold a database key in browser code. (PROBE-001 #1)
+- F1-9. IF a request from the browser tries to add, change, or delete a posting, THEN THE SYSTEM SHALL refuse it. (PROBE-001 #4)
+- F1-10. THE SYSTEM SHALL show only postings and a collection date that the team supplied, and SHALL NOT generate either. (PROBE-001 #2)
 
 ### F2. Ranked Gaps (J-Devon)
 
@@ -53,3 +56,5 @@ These are decisions, recorded so nobody builds them by accident.
 - **X2. No student accounts and no saved records (F6).** ADR-001 has no login. Outreach tracking needs a saved record.
 - **X3. No contact with employers, recruiters, or alumni.** The system never sends a message to anyone.
 - **X4. No applications through the system.** It shows evidence and the student decides.
+- **X5. No third-party backend or hosted database in Phase 2.** Data lives where ADR-001 puts it. (PROBE-001 #1)
+- **X6. No front-end framework and no build step.** The page is plain HTML, CSS, and JavaScript, as STANDARDS.md requires. (PROBE-001 #5)

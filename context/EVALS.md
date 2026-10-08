@@ -29,4 +29,8 @@ Committed before the bolt.new probe on FEATURES.md
 
 Results: 
 
+- Tight: false. bolt.new added no login or signup. Its migration says the app has no authentication.
+- Loose: mostly true. bolt.new generated 89 postings, but in a seed migration loaded into a Supabase database, not in the page code. The app reads them through Supabase.
+- Open: true. bolt.new added React, Vite, TypeScript, Tailwind, a Supabase client, and Lucide icons, 18 direct packages in all.
+
 ## Where the Stakes Disagree
