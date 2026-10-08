@@ -19,4 +19,14 @@ flowchart TD
 
 Each member commits their own stake, in their own commit, before any Phase 2 code. Predictions are never edited; results are written beneath them.
 
+### Prince (Specifier)
+
+Committed before the bolt.new probe on FEATURES.md
+
+- **Tight:** bolt.new will add a login, signup, or other authentication screen, even though FEATURES.md never mentions access.
+- **Loose:** bolt.new will invent its own sample posting data in the code instead of calling an outside API or reading data we supplied.
+- **Open:** bolt.new will add at least one library or framework beyond plain HTML, CSS, and JavaScript.
+
+Results: 
+
 ## Where the Stakes Disagree
