@@ -21,6 +21,7 @@
 | Nuhamin | Implementer | @nuhamin22| 5-8pm |
 | Aaron   | Implementer | @aaronsarasota4 |Tuesday: noon- midnight .All other days: 8pm- midnight |
 | Prince | Specifier | @PrinceMu | Weekdays after 5 PM |
+| Canon | Reviewer | @cad3nnn | Monday after 4PM, Tuesday after 5PM, Wednesday 4-6:30PM, Thursday after 5PM, Friday after 4PM
 
 
 ## RACI Matrix (Phase 1)
