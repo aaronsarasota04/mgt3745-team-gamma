@@ -41,13 +41,21 @@ restricted, so the system reads a hand-collected posting set loaded once with
 `wrangler d1 execute`. The data is a frozen snapshot and the problem is about
 change. ADR-001 carries this under Consequences rather than burying it.
 
-**Still open at the end of Phase 1.** ADR-001 lists three unresolved items. The
-first is the one worth reading: the `context/TOOLS.md` draft on the
-`aaron-phase1` branch lists a Google Gemini API row whose crossing statement
-says the Worker sends the user's skillset to Google for role suggestions.
-ADR-001 does not cover that call. If it is real, student skill data leaves
-Cloudflare for Google, and the Gate's control-of-user-data score of 4 for Build
-is no longer justified. The team has not resolved this.
+**Resolved on the last day.** ADR-001 carried an open question for two days:
+`context/TOOLS.md` described a Google Gemini call that the ADR did not cover. On
+2026-10-08 the Implementer confirmed it is real. The system has two parts, and
+the second, suggesting three roles from a student's skillset, sends that
+skillset to the Google Gemini API. ADR-001 now names that crossing, the diagram
+shows Gemini as the only box outside our Cloudflare account, and Build's
+control-of-user-data score in the Gate moved from 4 to 3, taking its total from
+83 to 79. Build still wins, 79 to 50 to 40, so the decision did not change, only
+the honesty of the number behind it.
+
+**Still open.** Nobody has written down which fields of the skillset are sent to
+Google, or whether anything identifying the student travels with them. The
+crossing is named; its width is not. ADR-001 also still carries a proposed
+rather than agreed Approver, and `FEATURES.md` has no feature IDs for the
+Consequences to point at.
 
 ## See It Work
 

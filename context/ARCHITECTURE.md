@@ -42,9 +42,23 @@ options are the course's standard doors, read for this problem:
 | Fits the job the student is hiring this tool for | 5 | 5 | 2 | 4 |
 | Team capability in three weeks | 4 | 5 | 3 | 2 |
 | Switching cost | 3 | 4 | 2 | 2 |
-| Control of user data | 4 | 4 | 2 | 2 |
+| Control of user data | 4 | 3 | 2 | 2 |
 | Cost | 2 | 5 | 2 | 4 |
-| **Weighted total (max 90)** | | **83** | **40** | **50** |
+| **Weighted total (max 90)** | | **79** | **40** | **50** |
+
+**Revised 2026-10-08. Build's control-of-user-data score moved from 4 to 3,
+and its total from 83 to 79.** The original 4 rested on nothing leaving our
+Cloudflare account. On 2026-10-08 the Implementer confirmed in Teams that the
+system has two parts, and that the second one, suggesting three roles from a
+student's skillset, sends that skillset to the Google Gemini API. That is a
+second vendor and a real crossing, so the score no longer holds at 4.
+
+It moves to 3 rather than 2 because the crossing is still narrower than Buy's or
+Delegate's: we choose which fields are sent, the credential stays a Cloudflare
+Worker secret, and the postings and the student's stored skill list never leave
+D1. **The decision does not change. Build still wins, 79 to 50 to 40.** This is
+the Revisit Trigger below firing as intended, recorded rather than quietly
+edited; the original score is in this file's git history.
 
 **Notes on the scores.**
 
@@ -66,11 +80,11 @@ options are the course's standard doors, read for this problem:
   moved three rows we did not care about. Moving a term's worth of real data is an
   experiment none of us has run.
 
-**On the margin.** Build wins by 33 points out of 90, which is wide enough that a
+**On the margin.** Build wins by 29 points out of 90 after the revision above, which is wide enough that a
 reviewer should ask whether Buy was scored fairly rather than conveniently. The
 honest answer is that Buy loses almost entirely on one criterion, fit, and that
 criterion carries the heaviest weight. Drop fit to a weight of 3 and Build still
-leads 73 to 36. **The result is not sensitive to that weight; it is sensitive to
+leads 69 to 36. **The result is not sensitive to that weight; it is sensitive to
 whether an off-the-shelf product exists that answers the student's actual
 question.** If a reviewer knows one, that is the finding, and it is worth more
 than the table.
@@ -102,7 +116,17 @@ choose. Request metadata, including IP addresses and timestamps, is logged by
 Cloudflare by default whether we ask for it or not. This is not regulated data,
 but it is a record of what a person does not know yet and which jobs they want,
 which is exactly the kind of thing they would not want their current employer or
-a classmate to read. **The Implementer is accountable for what crosses, as the
+a classmate to read. **The second crossing, named.** Confirmed by the Implementer on 2026-10-08: the
+system has two parts. The first compares a student's skills to the skills in the
+postings and stays inside Cloudflare. The second suggests three roles from the
+student's skillset, and **to do that the Worker sends that skillset to the Google
+Gemini API**, under Google's API terms, with the credential held as a
+`GEMINI_API` Worker secret. The student's stored skill list and the postings
+stay in D1; what crosses is the skillset as a prompt. This is a second vendor
+and a different crossing from the Cloudflare one, and it is why the Gate's
+control-of-user-data score for Build was revised from 4 to 3 above.
+
+**The Implementer is accountable for what crosses, as the
 author of `TOOLS.md`.** Our roster lists two Implementers, Nuhamin and Aaron, and
 `TOOLS.md` is currently being written by Aaron, so this names the role rather
 than guessing the person; whoever owns that file should put their name here. The
@@ -119,7 +143,8 @@ Consequences rather than buried here.
 
 Build (our own Worker, D1, and a static page), Buy (an existing skills or
 job-data product), and Delegate (bolt.new generates and hosts the application).
-Scored in the Gate above: **83, 40, and 50 out of 90.**
+Scored in the Gate above: **79, 40, and 50 out of 90** after the 2026-10-08
+revision to Build's control-of-user-data score.
 
 ### Decision
 
@@ -127,9 +152,17 @@ Build. One Cloudflare Worker serves the API. A D1 database holds two tables: the
 collected postings with their extracted skills, and each student's own skill
 list. A static page calls the Worker, submits what the student already knows,
 and renders the gap: the skills that appear most often in postings for their
-target role and least often in their own list. No login, because no authenticated
-user model exists and inventing one in three weeks would cost more than the
-feature it protects.
+target role and least often in their own list.
+
+**The system has a second part**, confirmed by the Implementer on 2026-10-08:
+from the same skillset it suggests three roles the student could target. That
+suggestion is not computed from D1. The Worker sends the skillset to the Google
+Gemini API and returns what comes back. It is the only part of this design that
+leaves our Cloudflare account, it is drawn as the one dashed box in the diagram
+below, and it is the reason Build's control-of-user-data score is 3 and not 4.
+
+No login, because no authenticated user model exists and inventing one in three
+weeks would cost more than the feature it protects.
 
 ### Consequences
 
@@ -177,16 +210,26 @@ flowchart LR
         SP["Skills page<br/>(static HTML, CSS, JS)"]
     end
     subgraph CF["Cloudflare account"]
-        W["Worker<br/>API: /skills, /gaps"]
+        W["Worker<br/>API: /skills, /gaps, /roles"]
         DB[("D1<br/>postings, student_skills")]
     end
     POST["Hand-collected posting set<br/>(synthetic, loaded once)"]
+    G["Google Gemini API<br/>(role suggestions)"]
 
     SP -- "POST /skills (what I already know)" --> W
-    SP -- "GET /gaps?role=... " --> W
+    SP -- "GET /gaps?role=... (part 1: skills vs postings)" --> W
+    SP -- "GET /roles (part 2: suggest 3 roles)" --> W
     W --> DB
     POST -- "wrangler d1 execute" --> DB
+    W -- "skillset as prompt<br/>CROSSES to Google" --> G
+    G -- "three suggested roles" --> W
+
+    style G stroke-dasharray: 5 5
 ```
+
+The dashed box is deliberate: **`G` is the only box outside our Cloudflare
+account**, and the arrow into it is the crossing named in the Context. A diagram
+that left it out would disagree with `TOOLS.md`.
 
 ---
 
@@ -194,20 +237,19 @@ flowchart LR
 
 Three things this record does not settle, stated rather than left blank.
 
-**1. `TOOLS.md` describes a crossing this ADR does not cover.** Aaron's
-`TOOLS.md` on `aaron-phase1` includes a Google Gemini row: *"My Worker sends the
-user's skillset to Google Gemini for role suggestions,"* with a `GEMINI_API`
-secret. **This ADR does not describe that call.** Asked in Teams on 2026-10-07;
-the answer was that the row was copied from a personal HW5 file, which leaves it
-unresolved whether Gemini is in the team's Phase 2 design.
+**1. RESOLVED 2026-10-08. The Gemini crossing is real and is now in this ADR.**
+Asked in Teams on 2026-10-07 and again in review on PR #9. The Implementer
+answered on 2026-10-08: the product has two parts, and the second, suggesting
+three roles from a student's skillset, is where the crossing to Google Gemini
+happens. The Context above now names that crossing, the diagram now shows it as
+the only box outside our Cloudflare account, and Build's control-of-user-data
+score moved from 4 to 3 with the reasoning recorded under the scores table. The
+decision itself did not change.
 
-If it is, two things change and neither is cosmetic. The Context section above
-would need a second vendor, because a student's skill list reaching Google under
-Google's API terms is a different crossing from it staying in our Cloudflare
-account. And **the Gate's "control of user data" score of 4 for Build would no
-longer be justified**, since part of its reasoning is that nothing leaves the
-Cloudflare account. Changing a score after the fact is worse than recording the
-doubt, so the doubt is recorded here.
+What is still open underneath it: nobody has written down **which fields** of the
+skillset are sent to Google, or whether anything identifying the student can ride
+along with them. The crossing is named; its width is not. That belongs in
+`TOOLS.md` and is owed before this holds a real student's data.
 
 **2. The Approver is proposed, not agreed.** See the Status line.
 
