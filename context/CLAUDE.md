@@ -1,7 +1,5 @@
 # CLAUDE.md
 
-Stub from mgt3745-group-template. Accountable: the Implementer.
-
 Read `context/STANDARDS.md` and the selected scope in `context/FEATURES.md` before editing. `STANDARDS.md` is normative; if instructions conflict, report the conflict and repair it rather than choosing between them.
 
 ## Approved Tools
@@ -21,6 +19,8 @@ Read `context/STANDARDS.md` and the selected scope in `context/FEATURES.md` befo
 - Connect all form controls to explicit labels and provide accessible status feedback (`role="alert"`, `aria-live`).
 - Route all network requests through a unified request helper and handle failure gracefully on the page without throwing uncaught exceptions to the console.
 - Retain typed user input in form fields whenever storage writes, network calls, or save attempts fail.
+- Preserve user-submitted data as entered without changing its meaning or adding unsupported details.
+- Handle network and database errors with clear user-visible messages and preserve input state when an operation fails.
 
 ## What AI May Never Do Here
 
@@ -31,13 +31,12 @@ Read `context/STANDARDS.md` and the selected scope in `context/FEATURES.md` befo
 - Do not write or commit any credentials, API keys, tokens, or passwords in code, comments, configuration, or context files (database IDs are treated as addresses and may reside in `wrangler.toml`).
 - Do not add dependencies or external assets without prior documentation in `TOOLS.md`.
 - Do not invent, fabricate, or assume data, test outcomes, interview evidence, verification results, deadlines, automatic recommendations, or status changes (e.g., implying an update was viewed) unless explicitly recorded in data.
-- Do not modify or replace preview files located in `/context`.
+- Do not modify or replace the preview files `context/STYLE.md`, `context/SKILLS.md`, or `context/AGENTS.md`.
 - Do not leave temporary debug statements (such as `console.log`) in code prior to completion.
 
 ## The DDR Rule
 
-- **Data Authenticity:** Present submitted data strictly as entered by the user without modifying meaning or adding arbitrary deadlines.
-- **Defensive Error Handling:** Catch network and database errors gracefully at the page level, ensuring user-visible error messages are rendered and input state is preserved upon failure.
+- Before using output from any delegated task, create its Delegation Disclosure Record (DDR) in `docs/`. Record the tool and model, what information crossed to the tool, who is accountable, and how the output was verified.
 
 ## When We Disagree About AI Use
 
