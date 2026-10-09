@@ -7,7 +7,7 @@
 | Role | Who |
 |---|---|
 | Driver | Aaron |
-| Approver | Ryan (drawn by lot) |
+| Approver | Ryan (assigned on Oct 8) |
 | Contributors | <all members> |
 | Informed | Instructor |
 
@@ -41,13 +41,16 @@ Scores by Aaron only since other members did not provide any data
 | Buildable on our stack in three weeks | 5 | 4 | 4 | 3 | 4 |
 | Data we can get legally and soon | 5 | 4 | 2 | 2 | 2 |
 | Meaning: at least three of us care | 5 | 5 | 1 | 1 | 2 |
-| **Weighted total (max 100)** | | **93** | **46** | **37** | **51** |
+| **Weighted total (max 100)** | | **84.5** | **41.8** | **33.6** | **46.4** |
+
+Totals are normalized from the raw weighted maximum of 110 to a 100-point
+scale, shown to one decimal place.
 
 ## Decision
 
 **Option A, Job search.** Selected by the team
 
-**Runner-up D:** Comic books (51).
+**Runner-up D:** Comic books (46.4).
 ## Dissent
 
 **None**
