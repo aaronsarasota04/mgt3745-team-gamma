@@ -14,6 +14,7 @@
 ## Options
 
 | Option | Owner | HW1 problem in one line |
+|---|---|---|
 | A. Job search | Aaron | Graduating seniors are struggling to land full time roles in the tight job market |
 
 ## Weights (committed before scores)
