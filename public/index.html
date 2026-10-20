@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Skill Gap for a Target Role</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <h1>Which skills am I missing?</h1>
+      <p class="lede">
+        Enter the skills you already have and pick a role. This shows the skills
+        that appear in postings for that role and are missing from your list.
+        It does not tell you whether to apply.
+      </p>
+
+      <form id="gap-form" novalidate>
+        <div class="field">
+          <label for="skills-input">Skills you already have</label>
+          <p class="hint" id="skills-hint">One per line, or separated by commas.</p>
+          <textarea
+            id="skills-input"
+            name="skills"
+            rows="6"
+            aria-describedby="skills-hint"
+            placeholder="JavaScript&#10;Git&#10;SQL"
+          ></textarea>
+        </div>
+
+        <div class="field">
+          <label for="role-select">Target role</label>
+          <select id="role-select" name="role" aria-describedby="role-hint">
+            <option value="">Loading roles…</option>
+          </select>
+          <p class="hint" id="role-hint">
+            Only roles the collected posting set contains.
+          </p>
+        </div>
+
+        <button type="submit" id="submit-button">Show my gap</button>
+      </form>
+
+      <!-- Errors and successes both land here so a screen reader hears either. -->
+      <p id="status" class="status" role="alert" aria-live="polite"></p>
+
+      <section id="result" class="result" hidden>
+        <h2 id="result-heading"></h2>
+        <p id="result-provenance" class="provenance"></p>
+        <ul id="gap-list" class="gap-list"></ul>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

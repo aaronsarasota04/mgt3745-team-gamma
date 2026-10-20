@@ -1,0 +1,17 @@
+# wrangler.toml
+# Phase 2 deployment. Nothing here is secret: database_id is an address, not a
+# key. F1-8 is satisfied by this file holding no credential and by the browser
+# never talking to D1 directly.
+
+name = "mgt3745-team-gamma"
+main = "worker.js"
+compatibility_date = "2026-09-01"
+
+# The static page is served by the Worker from this directory.
+assets = { directory = "./public" }
+
+[[d1_databases]]
+binding = "DB"
+database_name = "gamma-postings"
+# Paste the id wrangler prints from: npx wrangler d1 create gamma-postings
+database_id = "REPLACE_WITH_DATABASE_ID"

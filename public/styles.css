@@ -1,0 +1,128 @@
+/* styles.css
+   Every colour is a custom property declared once on :root, with the same hex
+   string as context/STYLE.md. Nothing below this block hard-codes a colour. */
+
+:root {
+  --color-text: #172b40;
+  --color-text-muted: #45586b;
+  --color-background: #f7f9fb;
+  --color-surface: #fafafa;
+  --color-primary: #123552;
+  --color-on-primary: #ffffff;
+  --color-border: #526578;
+  --color-divider: #b8c5d0;
+  --color-focus: #b16d00;
+  --color-danger: #922020;
+  --color-attention: #7a3d00;
+  --color-attention-surface: #ffe8c2;
+
+  --font-body: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --font-size-min: 14px;
+  --space-unit: 8px;
+  --radius: 4px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: calc(var(--font-size-min) + 2px);
+  line-height: 1.5;
+}
+
+.page {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: calc(var(--space-unit) * 4) calc(var(--space-unit) * 2);
+}
+
+h1 { font-size: 1.75rem; margin: 0 0 var(--space-unit); }
+
+.lede { color: var(--color-text-muted); margin: 0 0 calc(var(--space-unit) * 3); }
+
+.field { margin-bottom: calc(var(--space-unit) * 3); }
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: calc(var(--space-unit) * 0.5);
+}
+
+.hint {
+  margin: 0 0 var(--space-unit);
+  font-size: var(--font-size-min);
+  color: var(--color-text-muted);
+}
+
+textarea,
+select {
+  width: 100%;
+  padding: var(--space-unit);
+  font: inherit;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+textarea { resize: vertical; }
+
+:is(textarea, select, button):focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+button {
+  padding: var(--space-unit) calc(var(--space-unit) * 2);
+  font: inherit;
+  font-weight: 600;
+  color: var(--color-on-primary);
+  background: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+button[disabled] { opacity: 0.6; cursor: progress; }
+
+.status { margin: calc(var(--space-unit) * 2) 0 0; min-height: 1.5rem; }
+.status[data-tone="error"] { color: var(--color-danger); font-weight: 600; }
+.status[data-tone="info"] { color: var(--color-text-muted); }
+
+.result {
+  margin-top: calc(var(--space-unit) * 3);
+  padding: calc(var(--space-unit) * 2);
+  background: var(--color-surface);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius);
+}
+
+.result h2 { margin: 0 0 var(--space-unit); font-size: 1.25rem; }
+
+/* F1-4. The collection date sits with the result, not in a footer, because a
+   student reading a gap has to see how old the data behind it is. */
+.provenance {
+  margin: 0 0 calc(var(--space-unit) * 2);
+  padding: var(--space-unit);
+  font-size: var(--font-size-min);
+  color: var(--color-attention);
+  background: var(--color-attention-surface);
+  border-radius: var(--radius);
+}
+
+.gap-list { list-style: none; margin: 0; padding: 0; }
+
+.gap-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-unit);
+  padding: var(--space-unit) 0;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.gap-list li:last-child { border-bottom: 0; }
+
+.gap-count { color: var(--color-text-muted); font-variant-numeric: tabular-nums; }
