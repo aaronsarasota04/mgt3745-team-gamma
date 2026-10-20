@@ -2,6 +2,12 @@
 -- Hand-collected set as ADR-001 describes, loaded once with wrangler d1 execute.
 -- Collection date 2026-10-20, shown beside every result as F1-4 requires.
 
+-- Re-runnable on purpose. Loading the set twice is a normal thing to do while
+-- building, and a seed file that fails the second time wastes the time it was
+-- meant to save. Children first so the foreign key holds.
+DELETE FROM posting_skills;
+DELETE FROM postings;
+
 INSERT INTO postings (id, role, title, collected_on) VALUES (1, 'Frontend Developer', 'Frontend Developer 1', '2026-10-20');
 INSERT INTO posting_skills (posting_id, skill, skill_normalised) VALUES (1, 'JavaScript', 'javascript');
 INSERT INTO posting_skills (posting_id, skill, skill_normalised) VALUES (1, 'HTML', 'html');
