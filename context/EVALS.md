@@ -110,6 +110,7 @@ I predict **20 of 20 warm requests to the gap endpoint return under 1.5 s** on
 campus Wi-Fi, and **at least 4 of 20 first requests after 10 minutes idle go
 over 1.5 s**. If cold starts are not visible at all, the capability score of 4
 was conservative and I should say so in writing rather than quietly bank it.
+**Status (2026-10-21, Evaluator):** Method, recorded before the first run. evals/latency.js sends one priming request, then 20 back-to-back requests (warm), then 20 requests that each follow 10 minutes with no other request from me (cold), all to POST /api/gaps for Data Analyst. A request is slow at 1500 ms or more. Non-200 responses and network errors are counted separately as failed. The stake says campus Wi-Fi. This run is from a GitHub Codespace, so it measures the Worker from a datacenter and not from campus.
 
 
 ## Where the Stakes Disagree
