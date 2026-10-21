@@ -112,6 +112,7 @@ over 1.5 s**. If cold starts are not visible at all, the capability score of 4
 was conservative and I should say so in writing rather than quietly bank it.
 **Status (2026-10-21, Evaluator):** Method, recorded before the first run. evals/latency.js sends one priming request, then 20 back-to-back requests (warm), then 20 requests that each follow 10 minutes with no other request from me (cold), all to POST /api/gaps for Data Analyst. A request is slow at 1500 ms or more. Non-200 responses and network errors are counted separately as failed. The stake says campus Wi-Fi. This run is from a GitHub Codespace, so it measures the Worker from a datacenter and not from campus.
 
+The first run, started about 5:10 PM, stopped at TIME after 6 cold requests because CAUSE. Its rows are in evals/latency-results-run1.csv. The second run uses the same method.
 
 ## Where the Stakes Disagree
 
