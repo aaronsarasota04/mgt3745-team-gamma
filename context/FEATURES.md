@@ -35,6 +35,9 @@ Claude drafted this table. Prince checked each classification against the resear
 - F2-3. WHEN results are shown, THE SYSTEM SHALL mark the top-ranked missing skill as the first gap to close.
 - F2-4. IF two skills have the same count, THEN THE SYSTEM SHALL order them alphabetically, so the order does not change between page loads.
 - F2-5. IF the role has fewer than 10 postings, THEN THE SYSTEM SHALL say the sample is small next to the ranking.
+- F2-6. THE SYSTEM SHALL compute each skill's count from the postings in the posting set. (Issue #15)
+- F2-7. THE SYSTEM SHALL NOT treat a skill as held unless the student entered it. (Issue #15)
+- F2-8. THE SYSTEM SHALL NOT show a count larger than the total postings shown beside it. (Issue #15)
 
 ### F3. Share of Top Skills Held (J-Devon)
 
