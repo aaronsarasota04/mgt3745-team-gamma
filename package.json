@@ -1,0 +1,8 @@
+{
+  "name": "mgt3745-team-gamma",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test \"evals/*.test.js\""
+  }
+}
