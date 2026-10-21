@@ -38,8 +38,11 @@ Claude drafted this table. Prince checked each classification against the resear
 
 ### F3. Share of Top Skills Held (J-Devon)
 
-- F3-1. THE SYSTEM SHALL show how many of the 10 top-ranked skills for the role the student already has.
-- F3-2. IF the student has fewer than half of the top-ranked skills, THEN THE SYSTEM SHALL still show the gap and SHALL NOT tell the student whether to apply, because the decision stays with the student.
+Subject to exclusions X5 and X6.
+
+- F3-0. THE SYSTEM SHALL take the ranked skill list for the role from F2, and SHALL NOT generate, seed, or invent ranked skills of its own.
+- F3-1. THE SYSTEM SHALL show how many of the 10 top-ranked skills for the role the student already has, counting against the ten highest-ranked skills and ignoring any skill ranked below tenth, and matching skills as F1-3 requires, without regard to capitalization or extra spaces.
+- F3-2. IF the student has fewer than half of the top-ranked skills, where exactly half is not fewer than half, THEN THE SYSTEM SHALL still show the gap and SHALL NOT tell the student whether to apply, because the decision stays with the student. THE SYSTEM SHALL NOT apply warning or error styling to this state that it does not also apply at or above half, because styling that appears only when the student has done badly is a verdict with the words removed.
 - F3-3. IF the role has fewer than 10 ranked skills, THEN THE SYSTEM SHALL count against the skills it has and show the total used.
 
 ### F4. Where Else to Look (J-Devon)
@@ -51,6 +54,14 @@ Claude drafted this table. Prince checked each classification against the resear
 ## Exclusions
 
 These are decisions, recorded so nobody builds them by accident.
+
+**Read this before delegating a feature.** In HW6 I gave one feature's EARS
+rows to two AI builders. Neither prompt carried this section, because a
+feature-scoped prompt never does. One builder stood up a hosted Postgres
+database and shipped eighteen dependencies, breaking X5 and X6, and it cannot
+be blamed for breaking rules it was never shown. **Every feature that is bound
+by an exclusion should name it in the feature's own rows**, as F3 now does.
+Evidence: https://github.com/ryanlinde-gif/mgt3745-hw6
 
 - **X1. No live posting data (F5).** The system reads a hand-collected posting set loaded once. Deadline alerts need live data.
 - **X2. No student accounts and no saved records (F6).** ADR-001 has no login. Outreach tracking needs a saved record.
