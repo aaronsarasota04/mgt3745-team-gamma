@@ -1,19 +1,66 @@
 # EVALS.md
 
-Stub from mgt3745-group-template. Accountable: the Reviewer (teams of five: the Evaluator from Phase 2).
+Accountable: Prince (Reviewer and Evaluator, Phase 2).
 
 ## Opportunity Solution Tree
 
+Written 2026-10-21, after F1 was deployed and checked by hand on 2026-10-20. The Phase 1 slots for this tree, the RAT, and the eval list were empty, so all three are new in Phase 2. None of the evals below had run when this was written.
+
 ```mermaid
 flowchart TD
-    O["Outcome"] --> P1["Opportunity"]
-    P1 --> S1["Solution"]
-    S1 --> A1["Assumption test"]
+    O["Outcome: more students leave a session able to name their next skill, the role it serves, and why"]
+    O --> P1["Opportunity: students cannot tell which skills a role asks for"]
+    O --> P2["Opportunity: students rule themselves out of roles they might get"]
+    P1 --> S1["Solution: ranked list of the skills missing for a role (F1, F2)"]
+    P2 --> S2["Solution: where else to look beyond the big job boards (F4)"]
+    S1 --> A1["Assumption test: a student can name a next skill from the list and say why (RAT)"]
+    S1 --> A2["Assumption test: the posting set is large enough to rank (Ryan's stake)"]
+    S2 --> A3["Assumption test: a list of source types changes where a student looks (not run)"]
 ```
 
 ## Riskiest Assumption (RAT)
 
+**Assumption.** A student who sees the ranked gap list for a role can name the next skill they would learn and say why, without help.
+
+**Why this one.** The Outcome in PROJECT.md depends on it. No interview tested a ranking, and the posting set is a sample the team wrote, so nothing yet shows the list works as an answer.
+
+**Test.** Three testers, each a student targeting one of the roles in the deployed set (Frontend Developer, Data Analyst, and IT Support Specialist). A named team member sits in with each tester, and the notes record a role description only. Each tester uses the deployed page with their own skills. Order matters: first ask judgment question J1 below, then tell the tester the postings are a sample set the team wrote, then ask: "What would you learn next, and why?"
+
+**Pass.** At least 2 of 3 testers name a skill that is in the top five missing skills on their own screen and give a reason that refers to the list, such as its counts.
+
+**Fail.** 0 or 1 of 3. That means the list alone is not an answer, and the next step is the explanation around it, not more postings.
+
+**Changes to this plan** are recorded here with a date before the test runs.
+
 ## Evals Planned for Phase 2
+
+Code evals run with `npm test`. Ten call the deployed Worker and one reads the files in `public/`. The only requests that change anything are the write methods in E8, and the Worker should refuse them.
+
+| ID | EARS row | What it checks |
+|---|---|---|
+| E1 | F1-1 | `/api/roles` lists only roles that have postings |
+| E2 | F1-3 | Capitalization and extra spaces do not change a result |
+| E3 | F1-4 | Every result carries the collection date |
+| E4 | F1-5 | No skills gets a 400 and no result |
+| E5 | F1-6 | A role with no postings is named back and no gap is shown |
+| E6 | F1-7 | Holding every skill reports no gap |
+| E7 | F1-8 | No database key or binding appears in browser files |
+| E8 | F1-9 | POST, PUT, PATCH, and DELETE on `/api/postings` return 405 |
+| E9 | F2-1 | Missing skills are ordered by count, highest first |
+| E10 | F2-4 | Equal counts are in alphabetical order |
+| E11 | F2-8 | No count is larger than the total postings shown |
+
+Not covered by a code eval. F1-2 is exercised by every test that reads a gap. F1-10 is checked by reading `seed.sql` and `worker.js` in review. F2-3 and F2-5 describe what the page shows, and the deployed Worker returns no first-gap or small-sample field. F2-2 is covered in part by E11.
+
+Judgment evals, run with the same three testers:
+
+- **J1.** Before being told anything, does the tester say the postings are made up or a sample the team wrote? Pass: at least 2 of 3.
+- **J2.** Can the tester say how old the data is without being pointed to it? Pass: 3 of 3 find the collection date.
+
+Stake measurements, run by the Evaluator:
+
+- **S1.** Ryan's latency stake: 20 warm requests and 20 first requests after 10 minutes idle, against the deployed Worker.
+- **S2.** Ryan's ranking-stability stake: see the status line under it.
 
 ## Prediction Stakes
 
@@ -66,3 +113,5 @@ was conservative and I should say so in writing rather than quietly bank it.
 
 
 ## Where the Stakes Disagree
+
+Prince's and Ryan's stakes measure different things, so none of them disagree. Aaron and Canon committed no stake before Phase 2 code, so there is no stake from either to compare or resolve.
