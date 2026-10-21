@@ -27,6 +27,9 @@ Claude drafted this table. Prince checked each classification against the resear
 - F1-8. THE SYSTEM SHALL read postings only through the team's own API, and SHALL NOT hold a database key in browser code. (PROBE-001 #1)
 - F1-9. IF a request from the browser tries to add, change, or delete a posting, THEN THE SYSTEM SHALL refuse it. (PROBE-001 #4)
 - F1-10. THE SYSTEM SHALL show only postings and a collection date that the team supplied, and SHALL NOT generate either. (PROBE-001 #2)
+- F1-11: show loading while the dataset loads, its supplied collection date on success, and an unavailable status on failure. 
+- F1-12: provide common entry-level skills as addable presets without replacing existing input or duplicating an existing skill. |
+- F1-13: when the student chooses Clear Inputs, clear those inputs and UI states. |
 
 ### F2. Ranked Gaps (J-Devon)
 
