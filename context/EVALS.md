@@ -76,9 +76,9 @@ Committed before the bolt.new probe on FEATURES.md
 
 Results: 
 
-- Tight: false. bolt.new added no login or signup. Its migration says the app has no authentication.
-- Loose: mostly true. bolt.new generated 89 postings, but in a seed migration loaded into a Supabase database, not in the page code. The app reads them through Supabase.
-- Open: true. bolt.new added React, Vite, TypeScript, Tailwind, a Supabase client, and Lucide icons, 18 direct packages in all.
+- Tight (2026-10-08): false. bolt.new added 0 login or signup screens. Its file list showed none, and its migration says the app has no authentication.
+- Loose (2026-10-08): mostly true. bolt.new generated 89 postings, in a seed migration loaded into a Supabase database, not in the page code. The app reads them through Supabase.
+- Open (2026-10-08): true. bolt.new added 18 direct packages, including React, Vite, TypeScript, Tailwind, a Supabase client, and Lucide icons.
 > The eval list and the RAT are the Reviewer's artifact and are not written yet,
 > so this stake names what it measures in words rather than an eval number.
 > Renumber the headings to match once the list exists; do not edit the numbers
@@ -101,6 +101,8 @@ too pessimistic and the collection work is smaller than I told the team. If it
 is still unstable at 120, the product does not have a data problem it can fix
 by collecting harder, and we should reopen the Gate rather than ship a ranking
 we cannot defend.
+
+**Resolution (2026-10-22, Evaluator):** Not run. The prediction names 60 and 120 postings for a single role. The deployed set has 28 postings across three roles (Frontend Developer 12, Data Analyst 10, IT Support Specialist 6), so neither size exists. No number was measured, so the prediction is neither confirmed nor contradicted. Testing it needs a set of at least 120 postings for one role. The condition in the stake that would reopen the Gate (still unstable at 120 postings) was not reached, and neither was the condition that would shrink the collection work (stable at 60).
 
 **Does the Worker stay fast enough to feel like a page, not a job?**
 The Gate scored team capability 4 for Build largely on the fact that all of us
