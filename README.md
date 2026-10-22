@@ -66,7 +66,7 @@ npm test
 7. [context/ARCHITECTURE.md](context/ARCHITECTURE.md): the Gate, ADR-001, the diagram
 8. [context/EVALS.md](context/EVALS.md): the tree, the RAT, the evals, every stake
 9. [context/STANDARDS.md](context/STANDARDS.md), [context/CLAUDE.md](context/CLAUDE.md), [context/TOOLS.md](context/TOOLS.md), [context/STYLE.md](context/STYLE.md), [context/SKILLS.md](context/SKILLS.md), [context/AGENTS.md](context/AGENTS.md) (still a preview): how we work
-10. [docs/DDR-001.md](docs/DDR-001.md), [docs/DDR-002.md](docs/DDR-002.md), [docs/DDR-003.md](docs/DDR-003.md), [docs/DDR-004.md](docs/DDR-004.md), [docs/DDR-006.md](docs/DDR-006.md): delegation records
+10. [docs/DDR-001.md](docs/DDR-001.md), [docs/DDR-002.md](docs/DDR-002.md), [docs/DDR-003.md](docs/DDR-003.md), [docs/DDR-004.md](docs/DDR-004.md), [docs/DDR-005.md](docs/DDR-005.md), [docs/DDR-006.md](docs/DDR-006.md): delegation records
 11. [docs/VALIDATION.md](docs/VALIDATION.md): real user sessions
 
 ## AI Use
@@ -77,5 +77,5 @@ npm test
 | ARCHITECTURE.md, the Gate prose | Claude Opus 5 | R; Ryan Linde is A | [DDR-002](docs/DDR-002.md) |
 | STANDARDS.md merge | Gemini 3.6 Flash | R; Aaron Rahim is A | [DDR-003](docs/DDR-003.md) |
 | Worker, D1 schema, seed data, pages, STYLE.md and SKILLS.md merge | Claude Opus 5 | R; Ryan Linde is A | [DDR-004](docs/DDR-004.md) |
-| Code evals, EVALS.md sections, latency and session scripts, this README | Claude Sonnet 5.5 | R; Prince Muteteke is A | [DDR-005](docs/DDR-006.md) |
+| Code evals, EVALS.md sections, latency and session scripts, this README | Claude Sonnet 5.5 | R; Prince Muteteke is A | [DDR-006](docs/DDR-006.md) |
 
