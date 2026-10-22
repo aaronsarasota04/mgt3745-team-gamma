@@ -34,6 +34,19 @@ flowchart TD
 
 **Plan changed 2026-10-22, before the first session.** Only two testers are available by the deadline, so the RAT runs with two: a full-time software engineer who graduated with a CS degree, and a junior looking for an internship. The pass line becomes both testers (2 of 2). The judgment evals scale the same way: J1 passes at 2 of 2 and J2 passes at 2 of 2. A 1 of 2 result is a fail. The result will state its limits: two testers, both friends of the team, and one of them is a graduate and not a student.
 
+**RAT result (2026-10-22):** The assumption did not hold. Both testers named a skill that was in the top five missing skills on their own screen (2 of 2). Only one gave a reason that referred to the list. The CS graduate said the skill must have been highlighted for a reason, so I counted him as passing on the plan's wording, though he gave no count or rank and leaned on having seen the skill in real applications. The junior's reason was about his own coursework and the general value of SQL, and did not refer to the list. That is 1 of 2 passing, or 0 of 2 if the first reason is read as not referring to the list. The pass line was 2 of 2 either way. J1: 1 of 2 (pass: 2 of 2). J2: 0 of 2 (pass: 2 of 2). Per the plan, a fail means the list alone is not yet an answer, and the next step is the explanation around it, not more postings.
+
+| Session | Tester (role description) | Role on page | Skills entered | Skill named | In top five | Reason refers to list | J1 | J2 |
+|---|---|---|---|---|---|---|---|---|
+| 1 | CS graduate, full-time software engineer | Frontend Developer | HTML, Java, React | TypeScript | Yes | Borderline, counted Yes | Yes ("made up") | No, no date found |
+| 2 | Junior, internship search | Data Analyst | Python, Git, JavaScript | SQL | Yes | No | No (assumed web scraped) | No, no date found |
+
+Top five missing skills on screen. Session 1: TypeScript, Next.js, Tailwind CSS, GraphQL, Jest. Session 2: SQL, Excel, Power BI, Tableau, Pandas.
+
+Present: Prince ran and noted both sessions alone.
+
+Limits: One is a graduate and not a student. Both named the skill ranked first, and their reasons do not show whether the list or prior belief led them there. F1-4's code eval passes and DDR-004 records a collection-date line on the page, so the date is there. Neither tester noticed it.
+
 ## Evals Planned for Phase 2
 
 Code evals run with `npm test`. Ten call the deployed Worker and one reads the files in `public/`. The only requests that change anything are the write methods in E8, and the Worker should refuse them.
