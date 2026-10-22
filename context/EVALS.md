@@ -32,6 +32,8 @@ flowchart TD
 
 **Changes to this plan** are recorded here with a date before the test runs.
 
+**Plan changed 2026-10-22, before the first session.** Only two testers are available by the deadline, so the RAT runs with two: a full-time software engineer who graduated with a CS degree, and a junior looking for an internship. The pass line becomes both testers (2 of 2). The judgment evals scale the same way: J1 passes at 2 of 2 and J2 passes at 2 of 2. A 1 of 2 result is a fail. The result will state its limits: two testers, both friends of the team, and one of them is a graduate and not a student.
+
 ## Evals Planned for Phase 2
 
 Code evals run with `npm test`. Ten call the deployed Worker and one reads the files in `public/`. The only requests that change anything are the write methods in E8, and the Worker should refuse them.
