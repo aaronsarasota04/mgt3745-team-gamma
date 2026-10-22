@@ -112,7 +112,11 @@ over 1.5 s**. If cold starts are not visible at all, the capability score of 4
 was conservative and I should say so in writing rather than quietly bank it.
 **Status (2026-10-21, Evaluator):** Method, recorded before the first run. evals/latency.js sends one priming request, then 20 back-to-back requests (warm), then 20 requests that each follow 10 minutes with no other request from me (cold), all to POST /api/gaps for Data Analyst. A request is slow at 1500 ms or more. Non-200 responses and network errors are counted separately as failed. The stake says campus Wi-Fi. This run is from a GitHub Codespace, so it measures the Worker from a datacenter and not from campus.
 
+Interrupted measurement, recorded 10/21/26. The planned method was 20 warm and 20 cold requests in one run. The latest run began at 10:30 PM and finished 20 warm and 5 cold requests. Its last row is cold 5 at 11:38 PM ET. The script was not running at 11:54 PM ET, and cold 6, due at about 11:48 PM ET, has no row. The cause was not confirmed: probably the Codespace stopping. An earlier run began about 5:10 PM ET and stopped partway, and its rows are in evals/latency-results-run1.csv. Correction to the method line above: every run was from a GitHub Codespace, a datacenter network, and not from campus Wi-Fi as the stake says.
+
 The first run, started about 5:10 PM, stopped at TIME after 6 cold requests because CAUSE. Its rows are in evals/latency-results-run1.csv. The second run uses the same method.
+
+**Resolution (10/21/26, Prince):** Measured from a GitHub Codespace, not campus Wi-Fi, against the deployed Worker, POST /api/gaps for Data Analyst. Warm: 20 of 20 requests returned under 1.5 s (slowest WARM_MAX ms), so the warm half of the prediction held on this network. Cold: only 5 of the planned 20 requests were measured, and 0 of them went over 1.5 s (slowest COLD_MAX ms). The prediction was at least 4 of 20 over 1.5 s. Five fast results do not rule it out, because 4 of the 15 unmeasured requests could still have been slow, so the cold half is not resolved. Failed requests: 0 in both phases.
 
 ## Where the Stakes Disagree
 
