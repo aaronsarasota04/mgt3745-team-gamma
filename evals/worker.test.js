@@ -88,7 +88,7 @@ test("F1-7: holding every skill reports no gap instead of an empty list", async 
   assert.deepEqual(body.missing, []);
 });
 
-test.skip("F1-8: no database key or binding appears in browser files", () => {
+test("F1-8: no database key or binding appears in browser files", () => {
   const looksLikeCredential = /database_id|env\.DB|api[_-]?key|bearer\s/i;
   for (const name of readdirSync("public")) {
     const text = readFileSync(join("public", name), "utf8");
