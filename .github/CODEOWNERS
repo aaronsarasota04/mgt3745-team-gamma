@@ -2,14 +2,46 @@
 # Every path needs two owners so that nobody approves their own work.
 # Last matching pattern wins. Owners must have write access to this repository.
 #
-*                         @cad3nnn @nuhamin2234 @aaronsarasota04
-/context/PROJECT.md       @Daedruoy @cad3nnn
-/context/USERS.md         @Daedruoy @cad3nnn
-/context/FEATURES.md      @Daedruoy @cad3nnn
-/context/ARCHITECTURE.md  @ryanlinde-gif @cad3nnn
-/context/EVALS.md         @cad3nnn @Daedruoy
-/context/CLAUDE.md        @nuhamin2234 @aaronsarasota04 @ryanlinde-gif
-/context/STANDARDS.md     @nuhamin2234 @aaronsarasota04 @ryanlinde-gif
-/context/TOOLS.md         @nuhamin2234 @aaronsarasota04 @ryanlinde-gif
-/README.md                @cad3nnn @ryanlinde-gif
-/docs/                    @cad3nnn @nuhamin2234 @aaronsarasota04
+# Updated 2026-10-20 for the Phase 2 rotation, so this file matches the RACI
+# matrix in TEAM.md rather than Phase 1's.
+#
+#   Aaron  @aaronsarasota04  Architect
+#   Prince @Daedruoy         Reviewer and Evaluator
+#   Ryan   @ryanlinde-gif    Implementer
+#   Canon  @cad3nnn          Specifier
+#
+# @nuhamin2234 removed from every path. She has left the course, and GitHub was
+# still requesting her review on every pull request, which parks a merge behind
+# someone who cannot answer.
+
+*                         @aaronsarasota04 @ryanlinde-gif
+
+# Specifier
+/context/PROJECT.md       @cad3nnn @Daedruoy
+/context/USERS.md         @cad3nnn @Daedruoy
+/context/FEATURES.md      @cad3nnn @Daedruoy
+/docs/VALIDATION.md       @cad3nnn @Daedruoy
+
+# Architect
+/context/ARCHITECTURE.md  @aaronsarasota04 @ryanlinde-gif
+
+# Implementer
+/worker.js                @ryanlinde-gif @aaronsarasota04
+/schema.sql               @ryanlinde-gif @aaronsarasota04
+/seed.sql                 @ryanlinde-gif @aaronsarasota04
+/wrangler.toml            @ryanlinde-gif @aaronsarasota04
+/public/                  @ryanlinde-gif @aaronsarasota04
+/context/STANDARDS.md     @ryanlinde-gif @aaronsarasota04
+/context/TOOLS.md         @ryanlinde-gif @aaronsarasota04
+/context/CLAUDE.md        @ryanlinde-gif @aaronsarasota04
+/context/STYLE.md         @ryanlinde-gif @aaronsarasota04
+/context/SKILLS.md        @ryanlinde-gif @aaronsarasota04
+/docs/                    @ryanlinde-gif @cad3nnn
+
+# Reviewer and Evaluator
+/context/EVALS.md         @Daedruoy @cad3nnn
+/evals/                   @Daedruoy @ryanlinde-gif
+/README.md                @Daedruoy @ryanlinde-gif
+
+# Governance: owned by the Implementer this phase, reviewed by the Architect.
+/.github/                 @ryanlinde-gif @aaronsarasota04

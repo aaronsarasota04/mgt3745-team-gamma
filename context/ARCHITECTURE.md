@@ -255,3 +255,68 @@ along with them. The crossing is named; its width is not. That belongs in
 
 **3. No feature IDs.** `FEATURES.md` is still the template stub on `main`. The
 two Consequences marked above get IDs as soon as the Specifier commits rows.
+
+## ADR-002: Phase 2 Scope and Student Skill Data
+
+- **Status:** Proposed, 2026-10-22. **Driver:** [name]. **Approver:** [name].
+
+### Context
+
+Review of the deployed Phase 2 system found that it implements the skill-gap
+flow with a Cloudflare Worker and D1, but does not implement the Gemini role
+suggestions described in ADR-001. The Worker uses submitted skills for the
+current gap-check request and does not save them. The `student_skills` table is
+present in the schema but unused.
+
+ADR-001 says both that the Worker sends a student's skillset to Gemini and that
+nothing about the skill list leaves Cloudflare. Those claims conflict. The
+current implementation sends skills from the browser to the Worker, but does
+not send them to Gemini or persist them in D1. D1 is used for the team's
+synthetic posting and posting-skill data.
+
+The feature review found that F2 is not implemented as a complete feature; F3
+and F4 are also not implemented. See `FEATURES.md` for the acceptance criteria.
+
+### Decision
+
+For the current Phase 2 scope, keep the skill-gap check request-scoped: do not
+persist submitted student skills and do not send them to Gemini. Gemini-powered
+role suggestions are not part of the deployed feature set. D1 holds the
+team-supplied posting data; the unused `student_skills` table should be removed
+so the schema reflects this scope.
+
+F2, F3, and F4 are deferred from this release. This ADR does not
+claim these features are implemented or remove them from `FEATURES.md`. Revisit
+the scope if the team decides to add them; any resulting change to the
+architecture or product decision must be recorded in a subsequent ADR before
+implementation.
+
+Adding Gemini suggestions or saved student profiles also requires a follow-up
+ADR specifying the data flow, consent, retention, and deletion. If this
+proposal is approved, mark ADR-001 as **Superseded by ADR-002**; until then,
+ADR-001 remains proposed and this record does not claim team approval.
+
+### Consequences
+
+- **No saved student profile:** students must re-enter their skills each time;
+  the system cannot track progress or personalize across visits.
+- **No Gemini recommendations:** the app does not suggest alternative roles,
+  and it does not send submitted skills to Google or require a Gemini secret.
+- **F2, F3, and F4 are deferred:** the complete ranked-gap feature, the share
+  of top skills held, and additional places to look are not part of this
+  release.
+
+### Revisit Trigger
+
+- **Before accepting real student skill data or opening the app to external
+  students,** implement and verify authentication for every endpoint that
+  accepts student skills. Saved profiles must also enforce per-student
+  authorization. Decide the authentication provider and account flow in a
+  follow-up ADR before that use.
+- If the team decides to add Gemini suggestions, saved student profiles, or
+  deferred features F2-F4, record the scope and any resulting architecture
+  changes in a subsequent ADR before implementation.
+
+
+
+

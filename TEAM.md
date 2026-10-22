@@ -15,15 +15,52 @@
 
 ## Roster
 
-| Name | Role | GitHub | Contact hours (ET) |
-|---|---|---|---|
-| Ryan Linde | Architect | @ryanlinde-gif | Any day after 4:00 PM |
-| Nuhamin | Implementer | @nuhamin22| 5-8pm |
-| Aaron   | Implementer | @aaronsarasota4 |Tuesday: noon- midnight .All other days: 8pm- midnight |
-| Prince | Specifier | @PrinceMu | Weekdays after 5 PM |
-| Canon | Reviewer | @cad3nnn | Monday 6-9, Tuesday 5:30-7:30, Wed 4:30-6, Thu-Fri 5:30-9. Sat-Sun 1-8pm|
+Roles rotated on 2026-10-09 per the Rotation Plan below. GitHub handles
+corrected to match the accounts that actually commit, so they agree with
+`.github/CODEOWNERS`.
 
-## RACI Matrix (Phase 1)
+| Name | Phase 2 Role | GitHub | Contact hours (ET) |
+|---|---|---|---|
+| Aaron Rahim | Architect | @aaronsarasota04 | Tuesday noon to midnight. All other days 8pm to midnight |
+| Prince Muteteke | Reviewer and Evaluator | @Daedruoy | Weekdays after 5 PM |
+| Ryan Linde | Implementer | @ryanlinde-gif | Any day after 4:00 PM |
+| Canon | Specifier | @cad3nnn | Mon 6-9, Tue 5:30-7:30, Wed 4:30-6, Thu-Fri 5:30-9, Sat-Sun 1-8pm |
+
+**Roster change, 2026-10-20. Nuhamin has dropped the course.** Recorded here as
+the working agreement requires. She held Implementer in Phase 1 and was due
+Specifier in Phase 2. Her open work was `context/CLAUDE.md` and `docs/DDR-001.md`;
+Aaron volunteered for CLAUDE.md and shipped it in #14. **DDR-001 is still
+unowned.**
+
+**The team is now four**, so per the Phase 2 brief the Reviewer also holds the
+Evaluator role, and both parts count toward one Verification score. Prince holds
+both.
+
+## RACI Matrix (Phase 2)
+
+R = Responsible (does the work), A = Accountable (answers for it; exactly one person, always a person), C = Consulted (asked before), I = Informed (told after). AI tools may be R or C and are never A. Every row where AI is R names the human A beside it.
+
+| Artifact | Specifier (Canon) | Architect (Aaron) | Implementer (Ryan) | Reviewer + Evaluator (Prince) | AI tools |
+|---|---|---|---|---|---|
+| context/FEATURES.md | A/R | C | C | C | |
+| docs/VALIDATION.md | A/R | I | I | C | |
+| context/ARCHITECTURE.md: ADR-002 onward, D1 schema, diagram | C | A/R | C | C | |
+| The Worker, D1 schema and seed data, static pages | C | C | A/R | C | R: named per piece in that piece's DDR; Ryan is A |
+| context/STYLE.md, context/SKILLS.md | C | C | A/R | C | |
+| context/TOOLS.md, context/STANDARDS.md, context/CLAUDE.md | I | C | A/R | C | |
+| docs/DDR-* for delegated work | I | I | A/R | C | |
+| context/EVALS.md: code evals with node:test | C | C | C | A/R | |
+| context/EVALS.md: RAT, judgment evals, stake resolution | C | C | C | A/R | |
+| Pull request reviews | R | R | R | A/R | |
+| README.md | C | C | R | A/R | |
+| .github/CODEOWNERS and branch protection | I | C | A/R | C | |
+
+**docs/DDR-001.md has no owner** after Nuhamin's departure. It records the
+team's bolt.new specification probe, which Prince actually ran in Phase 1, so
+Prince holds the evidence. The team should assign it rather than let it stay
+blank.
+
+## RACI Matrix (Phase 1, superseded 2026-10-09)
 
 R = Responsible (does the work), A = Accountable (answers for it; exactly one person, always a person), C = Consulted (asked before), I = Informed (told after). AI tools may be R or C and are never A. Every row where AI is R names the human A beside it.
 
@@ -56,7 +93,7 @@ Teams of four: delete the Evaluator column.
 | Prince | Specifier | Reviewer | Architect |
 | Ryan | Architect | Implementer | Specifier |
 | Canon | Reviewer | Specifier | Implementer |
-| Nuhamin | Implementer | Specifier | Reviewer |
+| Nuhamin | Implementer | *(dropped the course, 2026-10-20)* | *(dropped)* |
 
 
 Nobody holds the same role twice, and every role is filled in every phase.
@@ -66,3 +103,5 @@ Nobody holds the same role twice, and every role is filled in every phase.
 | Date | Decision or note | Recorded by |
 |---|---|---|
 | Oct 5 | Roles assigned. Problem chosen for DACI-001. Aaron drove the decision. | Prince |
+| Oct 9 | Roles rotated per the Rotation Plan. Aaron Architect, Prince Reviewer and Evaluator, Ryan Implementer, Canon Specifier. | Ryan |
+| Oct 20 | Nuhamin has dropped the course. Team is now four, so the Reviewer also holds Evaluator. CLAUDE.md was picked up by Aaron. DDR-001 is still unowned. | Ryan |
