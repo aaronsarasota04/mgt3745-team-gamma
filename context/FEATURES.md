@@ -10,6 +10,7 @@
 | F4 | List source types beyond the major job boards | Performance | J-Devon, second job statement. Aaron's recruiter said not all jobs are posted on LinkedIn and alumni one to three years ahead can help a lot. More role-specific sources are more useful. |
 | F5 | Surface deadlines for a student who checks once a day | Attractive | J-Maya. Prince's chapter research found the one-window habit in a commuting member. Nobody tested it with job boards. It needs live postings, so it is out of Phase 2. |
 | F6 | Track outreach and follow-up | Attractive | J-Jordan. Ryan's athletic research found students lose track of whom to follow up with. Nobody tested it with job search. It needs a saved student record, so it is out of Phase 2. |
+| F7 | Improve the skill-gap workflow | Performance | Proposed future improvements from the HW6 spec gap, not requirements for the shipped F1 feature; see [issue #29](https://github.com/aaronsarasota04/mgt3745-team-gamma/issues/29). |
 
 Claude drafted this table. Prince checked each classification against the research (a C row in TEAM.md). Only Aaron's interviews were about this problem, so F5 and F6 rest on patterns from other research and say so.
 
@@ -53,6 +54,12 @@ Subject to exclusions X5 and X6.
 - F4-1. THE SYSTEM SHALL show a short list of source types to search beyond the major job boards: company career pages, university career services, alumni one to three years ahead, and smaller companies.
 - F4-2. THE SYSTEM SHALL describe each source type in one line and SHALL NOT name or link a specific person.
 - F4-3. IF the sources list fails to load, THEN THE SYSTEM SHALL still show the gap result and say the sources list is unavailable.
+
+### F7. Improved Skill-Gap Workflow 
+
+- F7-1. IF the dataset is loading, THEN THE SYSTEM SHALL show a loading status. WHEN the dataset loads successfully, THE SYSTEM SHALL show its supplied collection date. IF loading fails, THEN THE SYSTEM SHALL show an unavailable status. (Issue #29)
+- F7-2. THE SYSTEM SHALL provide common entry-level skills as addable presets. WHEN a student adds a preset, THE SYSTEM SHALL preserve the student's existing skills and SHALL NOT add a skill already present, regardless of capitalization or extra spaces. (Issue #29)
+- F7-3. WHEN the student chooses Clear Inputs, THE SYSTEM SHALL clear the student's entered skills and target role and reset the displayed results and related interface states. (Issue #29)
 
 ## Exclusions
 
