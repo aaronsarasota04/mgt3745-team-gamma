@@ -1,4 +1,4 @@
-# docs/VALIDATION.md
+# VALIDATION.md
 
 ## Users confirmed
 
@@ -26,8 +26,27 @@ Note: He realized he already had some of those skills and just forgot to list th
 
 Role: CE junior
 Skills entered: Python, Java, C, JavaScript, Data Structures and Algorithms, Object-Oriented Programming (OOP), Git/GitHub, SQL, HTML/CSS, Agile/Scrum, PyTorch, JUnit
-Role chosen: Frontend Dveloper
+Role chosen: Frontend Developer
 Result: 12 skills not on the list (Git 11/12, CSS 9/12, React 8/12, Testing 7/12, TypeScript 6/12, HTML 5/12, Accessibility 4/12, REST APIs 3/12, CI/CD 2/12, Responsive Design 2/12, Figma 1/12, Webpack 1/12).
-Nore: Reinforced F1-3 (case and spacing) and the value of ranking. No change to Must-be rows.
+Note: Reinforced F1-3 (case and spacing) and the value of ranking. No change to Must-be rows.
+## Finding from session 3: compound skill entries
+
+Session 3's tester entered `Git/GitHub` and `HTML/CSS` as single lines, and the
+result still lists Git 11/12 and HTML 5/12 as missing. Re-running the same input
+against the deployed build reproduces it.
+
+This is not a defect in the build. **F1-3** requires matching "without regard to
+capitalization or extra spaces" and says nothing about splitting a compound
+entry on a slash, so the Worker does exactly what the row specifies. The row is
+what is too narrow.
+
+Session 2's note, that the tester "realized he already had some of those skills
+and just forgot to list them", may be the same effect rather than forgetfulness.
+
+Recorded here rather than changed, because a new EARS row is the Specifier's
+call and not something to add in the last hour before a deadline. The natural
+shape would be an F1-14 saying a skill entry separated by a slash counts as each
+of its parts.
+
 ## Summary
 Three real users ran the deployed build on 2026-10-22. All three could use the skill-gap flow without help. Findings confirm the existing F1 Must-be rows and the ranking behavior already present in the API. No EARS changes are required from these sessions.
