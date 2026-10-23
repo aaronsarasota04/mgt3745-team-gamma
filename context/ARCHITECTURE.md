@@ -89,9 +89,9 @@ whether an off-the-shelf product exists that answers the student's actual
 question.** If a reviewer knows one, that is the finding, and it is worth more
 than the table.
 
-## ADR-001: Build on Cloudflare Workers and D1(**Superseded by ADR-002 as of 2026-10-22**)
+## ADR-001: Build on Cloudflare Workers and D1 (**Superseded by ADR-002 as of 2026-10-22**)
 
-- **Status:** Proposed, 2026-10-07. **Driver: Ryan Linde (Architect).**
+- **Status:** Superseded by ADR-002, 2026-10-22. **Driver: Ryan Linde (Architect).**
   **Approver: proposed Aaron Rahim; the team can name someone else in review.**
   *An ADR without an Approver is a record of whoever typed last, so a proposed
   name is better than a blank. Whoever approves this PR is approving that too.*
