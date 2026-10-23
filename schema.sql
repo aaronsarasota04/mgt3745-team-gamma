@@ -6,7 +6,7 @@
 
 DROP TABLE IF EXISTS posting_skills;
 DROP TABLE IF EXISTS postings;
-DROP TABLE IF EXISTS student_skills;
+DROP TABLE IF EXISTS student_skills;  -- dropped by ADR-002; see the note below
 
 -- One row per hand-collected posting.
 -- collected_on is stored per posting, not per database, because F1-4 requires
@@ -33,13 +33,13 @@ CREATE TABLE posting_skills (
 CREATE INDEX idx_postings_role ON postings(role);
 CREATE INDEX idx_posting_skills_norm ON posting_skills(skill_normalised);
 
--- ADR-001 names a second table for each student's own skill list. F1 does not
--- write to it: ADR-001 also decided there is no login, so there is no student
--- to attach a row to, and the skills a student types are used for one request
--- and never stored. The table is created so the schema matches the ADR, and the
--- gap between them is raised for the Architect rather than left implicit.
-CREATE TABLE student_skills (
-  id               INTEGER PRIMARY KEY,
-  skill            TEXT NOT NULL,
-  skill_normalised TEXT NOT NULL
-);
+-- ADR-002 (2026-10-22) removed the student_skills table that ADR-001 named.
+-- ADR-001 asked for two tables: the postings, and each student's own skill
+-- list. It also decided there would be no login, so there is no student for a
+-- skills row to belong to, and F1 never wrote one. The table existed and stayed
+-- empty, which is a schema that describes a system we did not build.
+--
+-- The skills a student types are used for one request and never stored. If the
+-- team later wants saved profiles, ADR-002's revisit trigger says that needs
+-- its own ADR covering the data flow, consent, retention and deletion, and
+-- authentication before any real student data is accepted.
