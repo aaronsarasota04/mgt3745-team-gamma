@@ -89,7 +89,7 @@ whether an off-the-shelf product exists that answers the student's actual
 question.** If a reviewer knows one, that is the finding, and it is worth more
 than the table.
 
-## ADR-001: Build on Cloudflare Workers and D1
+## ADR-001: Build on Cloudflare Workers and D1(**Superseded by ADR-002 as of 2026-10-22**)
 
 - **Status:** Proposed, 2026-10-07. **Driver: Ryan Linde (Architect).**
   **Approver: proposed Aaron Rahim; the team can name someone else in review.**
@@ -199,41 +199,38 @@ Any one of these:
 - Skill normalisation turns out to need more than three weeks, at which point the
   scope question comes back to the team rather than to the Architect.
 
-## Architecture Diagram
+## Current Architecture Diagram (ADR-002)
 
-Matches ADR-001 box for box: every box below appears in the Decision above, and
-nothing in the Decision is missing from the diagram.
+This diagram reflects the approved Phase 2 scope and the implementation in
+`worker.js`, `public/`, `schema.sql`, `seed.sql`, and `wrangler.toml`.
 
 ```mermaid
 flowchart LR
     subgraph Student["Student's browser"]
-        SP["Skills page<br/>(static HTML, CSS, JS)"]
+        SP["Static skills page<br/>(HTML, CSS, JS)"]
     end
     subgraph CF["Cloudflare account"]
-        W["Worker<br/>API: /skills, /gaps, /roles"]
-        DB[("D1<br/>postings, student_skills")]
+        W["Worker<br/>GET /api/roles<br/>POST /api/gaps<br/>serves static assets"]
+        DB[("D1<br/>postings<br/>posting_skills")]
     end
-    POST["Hand-collected posting set<br/>(synthetic, loaded once)"]
-    G["Google Gemini API<br/>(role suggestions)"]
+    POST["Team-supplied synthetic<br/>posting set"]
 
-    SP -- "POST /skills (what I already know)" --> W
-    SP -- "GET /gaps?role=... (part 1: skills vs postings)" --> W
-    SP -- "GET /roles (part 2: suggest 3 roles)" --> W
-    W --> DB
+    W -- "serves page" --> SP
+    SP -- "GET /api/roles" --> W
+    SP -- "POST /api/gaps<br/>role + skills (request-scoped)" --> W
+    W -- "query postings" --> DB
+    DB -- "posting and skill data" --> W
     POST -- "wrangler d1 execute" --> DB
-    W -- "skillset as prompt<br/>CROSSES to Google" --> G
-    G -- "three suggested roles" --> W
-
-    style G stroke-dasharray: 5 5
 ```
 
-The dashed box is deliberate: **`G` is the only box outside our Cloudflare
-account**, and the arrow into it is the crossing named in the Context. A diagram
-that left it out would disagree with `TOOLS.md`.
+The browser sends entered skills to the Worker for the current gap request.
+The Worker does not persist those skills or send them to Gemini; D1 contains
+only the team's supplied posting data. F2, F3, and F4 are deferred from this
+release.
 
 ---
 
-## Open against this ADR
+## Open against ADR-001(**historical**)
 
 Three things this record does not settle, stated rather than left blank.
 
@@ -255,3 +252,65 @@ along with them. The crossing is named; its width is not. That belongs in
 
 **3. No feature IDs.** `FEATURES.md` is still the template stub on `main`. The
 two Consequences marked above get IDs as soon as the Specifier commits rows.
+
+## ADR-002: Phase 2 Scope and Student Skill Data
+
+- **Status:** Approved, 2026-10-22. **Driver:** Aaron Rahim.
+  **Approver:** Ryan Linde.
+
+### Context
+
+Review of the deployed Phase 2 system found that it implements the skill-gap
+flow with a Cloudflare Worker and D1, but does not implement the Gemini role
+suggestions described in ADR-001. The Worker uses submitted skills for the
+current gap-check request and does not save them. The `student_skills` table is
+present in the schema but unused.
+
+ADR-001 says both that the Worker sends a student's skillset to Gemini and that
+nothing about the skill list leaves Cloudflare. Those claims conflict. The
+current implementation sends skills from the browser to the Worker, but does
+not send them to Gemini or persist them in D1. D1 is used for the team's
+synthetic posting and posting-skill data.
+
+The feature review found that F2 is not implemented as a complete feature; F3
+and F4 are also not implemented. See `FEATURES.md` for the acceptance criteria.
+
+### Decision
+
+For the current Phase 2 scope, keep the skill-gap check request-scoped: do not
+persist submitted student skills and do not send them to Gemini. Gemini-powered
+role suggestions are not part of the deployed feature set. D1 holds the
+team-supplied posting data; the unused `student_skills` table should be removed
+so the schema reflects this scope.
+
+F2, F3, and F4 are deferred from this release. This ADR does not
+claim these features are implemented or remove them from `FEATURES.md`. Revisit
+the scope if the team decides to add them; any resulting change to the
+architecture or product decision must be recorded in a subsequent ADR before
+implementation.
+
+Adding Gemini suggestions or saved student profiles also requires a follow-up
+ADR specifying the data flow, consent, retention, and deletion. If this
+proposal is approved, mark ADR-001 as **Superseded by ADR-002**; until then,
+ADR-001 remains proposed and this record does not claim team approval.
+
+### Consequences
+
+- **No saved student profile:** students must re-enter their skills each time;
+  the system cannot track progress or personalize across visits.
+- **No Gemini recommendations:** the app does not suggest alternative roles,
+  and it does not send submitted skills to Google or require a Gemini secret.
+- **F2, F3, and F4 are deferred:** the complete ranked-gap feature, the share
+  of top skills held, and additional places to look are not part of this
+  release.
+
+### Revisit Trigger
+
+- **Before accepting real student skill data or opening the app to external
+  students,** implement and verify authentication for every endpoint that
+  accepts student skills. Saved profiles must also enforce per-student
+  authorization. Decide the authentication provider and account flow in a
+  follow-up ADR before that use.
+- If the team decides to add Gemini suggestions, saved student profiles, or
+  deferred features F2-F4, record the scope and any resulting architecture
+  changes in a subsequent ADR before implementation.
