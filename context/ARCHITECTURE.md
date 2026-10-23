@@ -89,7 +89,7 @@ whether an off-the-shelf product exists that answers the student's actual
 question.** If a reviewer knows one, that is the finding, and it is worth more
 than the table.
 
-## ADR-001: Build on Cloudflare Workers and D1
+## ADR-001: Build on Cloudflare Workers and D1(**Superseded by ADR-002 as of 2026-10-22**)
 
 - **Status:** Proposed, 2026-10-07. **Driver: Ryan Linde (Architect).**
   **Approver: proposed Aaron Rahim; the team can name someone else in review.**
@@ -199,41 +199,38 @@ Any one of these:
 - Skill normalisation turns out to need more than three weeks, at which point the
   scope question comes back to the team rather than to the Architect.
 
-## Architecture Diagram
+## Current Architecture Diagram (ADR-002)
 
-Matches ADR-001 box for box: every box below appears in the Decision above, and
-nothing in the Decision is missing from the diagram.
+This diagram reflects the approved Phase 2 scope and the implementation in
+`worker.js`, `public/`, `schema.sql`, `seed.sql`, and `wrangler.toml`.
 
 ```mermaid
 flowchart LR
     subgraph Student["Student's browser"]
-        SP["Skills page<br/>(static HTML, CSS, JS)"]
+        SP["Static skills page<br/>(HTML, CSS, JS)"]
     end
     subgraph CF["Cloudflare account"]
-        W["Worker<br/>API: /skills, /gaps, /roles"]
-        DB[("D1<br/>postings, student_skills")]
+        W["Worker<br/>GET /api/roles<br/>POST /api/gaps<br/>serves static assets"]
+        DB[("D1<br/>postings<br/>posting_skills")]
     end
-    POST["Hand-collected posting set<br/>(synthetic, loaded once)"]
-    G["Google Gemini API<br/>(role suggestions)"]
+    POST["Team-supplied synthetic<br/>posting set"]
 
-    SP -- "POST /skills (what I already know)" --> W
-    SP -- "GET /gaps?role=... (part 1: skills vs postings)" --> W
-    SP -- "GET /roles (part 2: suggest 3 roles)" --> W
-    W --> DB
+    W -- "serves page" --> SP
+    SP -- "GET /api/roles" --> W
+    SP -- "POST /api/gaps<br/>role + skills (request-scoped)" --> W
+    W -- "query postings" --> DB
+    DB -- "posting and skill data" --> W
     POST -- "wrangler d1 execute" --> DB
-    W -- "skillset as prompt<br/>CROSSES to Google" --> G
-    G -- "three suggested roles" --> W
-
-    style G stroke-dasharray: 5 5
 ```
 
-The dashed box is deliberate: **`G` is the only box outside our Cloudflare
-account**, and the arrow into it is the crossing named in the Context. A diagram
-that left it out would disagree with `TOOLS.md`.
+The browser sends entered skills to the Worker for the current gap request.
+The Worker does not persist those skills or send them to Gemini; D1 contains
+only the team's supplied posting data. F2, F3, and F4 are deferred from this
+release.
 
 ---
 
-## Open against this ADR
+## Open against ADR-001(**historical**)
 
 Three things this record does not settle, stated rather than left blank.
 
@@ -258,7 +255,8 @@ two Consequences marked above get IDs as soon as the Specifier commits rows.
 
 ## ADR-002: Phase 2 Scope and Student Skill Data
 
-- **Status:** Proposed, 2026-10-22. **Driver:** [name]. **Approver:** [name].
+- **Status:** Approved, 2026-10-22. **Driver:** Aaron Rahim.
+  **Approver:** Ryan Linde.
 
 ### Context
 
@@ -316,7 +314,3 @@ ADR-001 remains proposed and this record does not claim team approval.
 - If the team decides to add Gemini suggestions, saved student profiles, or
   deferred features F2-F4, record the scope and any resulting architecture
   changes in a subsequent ADR before implementation.
-
-
-
-

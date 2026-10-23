@@ -77,5 +77,6 @@ npm test
 | ARCHITECTURE.md, the Gate prose | Claude Opus 5 | R; Ryan Linde is A | [DDR-002](docs/DDR-002.md) |
 | STANDARDS.md merge | Gemini 3.6 Flash | R; Aaron Rahim is A | [DDR-003](docs/DDR-003.md) |
 | Worker, D1 schema, seed data, pages, STYLE.md and SKILLS.md merge | Claude Opus 5 | R; Ryan Linde is A | [DDR-004](docs/DDR-004.md) |
+| ADR-002 draft | GitHub Copilot, GPT-6 Luna | R; Aaron Rahim is A | [DDR-005](docs/DDR-005.md) |
 | Code evals, EVALS.md sections, latency and session scripts, this README | Claude Sonnet 5.5 | R; Prince Muteteke is A | [DDR-006](docs/DDR-006.md) |
-
+| ADR-002 architecture diagram update | GitHub Copilot, GPT-6 Luna | R; Aaron Rahim is A | [DDR-007](docs/DDR-007.md) |
