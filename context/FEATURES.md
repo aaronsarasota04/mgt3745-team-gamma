@@ -5,7 +5,7 @@
 | ID | Feature | Class | Evidence and reasoning |
 |---|---|---|---|
 | F1 | Show the skills a student is missing for a target role | Must-be | Without it the tool answers nothing. J-Devon. Aaron's recruiter said students rule themselves out by reading a job description as a checklist, and the gap view is the check they lack. |
-| F2 | Rank missing skills by how many postings list them | Performance | A better ranking is worth more, and it gives the one gap worth closing first. J-Devon. No interview tested a ranking. |
+| F2 | Rank missing skills by how many postings list them | Performance | A better ranking is worth more, and it gives the one gap worth closing first. J-Devon. **The RAT tested the ranking on 2026-10-22 and refuted the assumption behind it**: both testers named a skill from the top five, but only one gave a reason that referred to the list at all. The ranking is used; it is not yet what persuades. See EVALS.md and docs/RETRO.md. |
 | F3 | Show how many of the top-ranked skills the student already has | Performance | Helps the decision to apply. Aaron's recruiter said a description describes the employer's preferred candidate, not a strict checklist. We assume a count helps, and no interview tested it. |
 | F4 | List source types beyond the major job boards | Performance | J-Devon, second job statement. Aaron's recruiter said not all jobs are posted on LinkedIn and alumni one to three years ahead can help a lot. More role-specific sources are more useful. |
 | F5 | Surface deadlines for a student who checks once a day | Attractive | J-Maya. Prince's chapter research found the one-window habit in a commuting member. Nobody tested it with job boards. It needs live postings, so it is out of Phase 2. |
@@ -55,11 +55,18 @@ Subject to exclusions X5 and X6.
 - F4-2. THE SYSTEM SHALL describe each source type in one line and SHALL NOT name or link a specific person.
 - F4-3. IF the sources list fails to load, THEN THE SYSTEM SHALL still show the gap result and say the sources list is unavailable.
 
-### F7. Improved Skill-Gap Workflow 
+### F7. Improved Skill-Gap Workflow (J-Devon)
+
+Performance class. Specified and not built. These rows improve the skill-gap
+flow rather than define it, so they live here rather than inside F1: adding a
+row to a deployed Must-be feature makes that feature non-compliant, which is
+the argument the team used when F7-1 to F7-3 moved out of F1 in #21. F7-4
+follows the same rule.
 
 - F7-1. IF the dataset is loading, THEN THE SYSTEM SHALL show a loading status. WHEN the dataset loads successfully, THE SYSTEM SHALL show its supplied collection date. IF loading fails, THEN THE SYSTEM SHALL show an unavailable status. (Issue #29)
 - F7-2. THE SYSTEM SHALL provide common entry-level skills as addable presets. WHEN a student adds a preset, THE SYSTEM SHALL preserve the student's existing skills and SHALL NOT add a skill already present, regardless of capitalization or extra spaces. (Issue #29)
 - F7-3. WHEN the student chooses Clear Inputs, THE SYSTEM SHALL clear the student's entered skills and target role and reset the displayed results and related interface states. (Issue #29)
+- F7-4. WHERE a student enters a skill containing a slash, THE SYSTEM SHALL treat each part as a separate skill. (VALIDATION.md session 3)
 
 ## Exclusions
 
@@ -79,3 +86,27 @@ Evidence: https://github.com/ryanlinde-gif/mgt3745-hw6
 - **X4. No applications through the system.** It shows evidence and the student decides.
 - **X5. No third-party backend or hosted database in Phase 2.** Data lives where ADR-001 puts it. (PROBE-001 #1)
 - **X6. No front-end framework and no build step.** The page is plain HTML, CSS, and JavaScript, as STANDARDS.md requires. (PROBE-001 #5)
+
+## Open against this specification
+
+Recorded by the Specifier at the end of Phase 3, as findings rather than rows,
+because each needs evidence this project did not gather.
+
+**1. A ranked list is not an explanation.** The RAT asked whether a student who
+sees the ranked gap can name their next skill and say why. Both testers named a
+skill from the top five and only one gave a reason that referred to the list.
+Every row in F1 and F2 describes *what to show*. Nothing in this file requires
+the system to say **why** a skill is ranked where it is. That is the gap the RAT
+found, and closing it is a feature nobody has specified yet, not a fix to an
+existing row.
+
+**2. Nothing requires the collection date to be noticed.** F1-4 requires the
+date beside every result, the code eval for it passes, and DDR-004 records it on
+the page. Neither tester found it when asked (J2: 0 of 2). A row can be
+satisfied and still fail its purpose, and this file has no vocabulary for that
+difference.
+
+**3. F7 is specified and unbuilt.** F7-1 to F7-3 are proper EARS rows with no
+implementation. They are Performance class and Phase 2's brief only required the
+Must-be features, so this is a scope decision rather than a miss. Naming it here
+so a reader does not assume the whole file is deployed.
