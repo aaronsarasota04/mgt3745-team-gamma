@@ -2,10 +2,18 @@
 
 Read `context/STANDARDS.md` and the selected scope in `context/FEATURES.md` before editing. `STANDARDS.md` is normative; if instructions conflict, report the conflict and repair it rather than choosing between them.
 
+Roles rotate each phase. `TEAM.md` is the source for who holds which role. The Final rotation was recorded on 2026-10-28.
+
 ## Approved Tools
 
 - Keep the workspace dependency-free by default. Do not install or import external frameworks, libraries, CDN tags, or build tools unless a row is added to `TOOLS.md` before installation detailing what the dependency is trusted with, what data it holds, and the cost of removal.
+- AI tools used on this project so far: Claude, GitHub Copilot, Google Gemini, and bolt.new (the Phase 1 specification probe only). Each needs a row in `TOOLS.md`, and each delegated piece needs a DDR.
 - Store root agent configuration in `CLAUDE.md` for Claude Code and mirror adapters in `.github/copilot-instructions.md` for VS Code Copilot.
+
+## Where AI May Be Responsible
+
+- AI may be R or C on any artifact row in `TEAM.md`. AI is never A. Every row where AI is R names the DDR and the human A beside it.
+- AI never approves or merges a pull request. Merging is a human act by a named reviewer.
 
 ## What AI May Do
 
@@ -31,7 +39,7 @@ Read `context/STANDARDS.md` and the selected scope in `context/FEATURES.md` befo
 - Do not write or commit any credentials, API keys, tokens, or passwords in code, comments, configuration, or context files (database IDs are treated as addresses and may reside in `wrangler.toml`).
 - Do not add dependencies or external assets without prior documentation in `TOOLS.md`.
 - Do not invent, fabricate, or assume data, test outcomes, interview evidence, verification results, deadlines, automatic recommendations, or status changes (e.g., implying an update was viewed) unless explicitly recorded in data.
-- Do not modify or replace the preview files `context/STYLE.md`, `context/SKILLS.md`, or `context/AGENTS.md`.
+- Do not modify or replace `context/STYLE.md` or `context/SKILLS.md` unless the task names them. They are merged team files, and changes go through a reviewed pull request.
 - Do not leave temporary debug statements (such as `console.log`) in code prior to completion.
 
 ## The DDR Rule
@@ -40,6 +48,7 @@ Read `context/STANDARDS.md` and the selected scope in `context/FEATURES.md` befo
 
 ## When We Disagree About AI Use
 
+- The Approver is the Reviewer (Aaron Rahim as of 2026-10-28). The member who disagrees says so in a pull request comment or opens a DACI in `docs/`. The Approver decides in writing, and the decision links the DDR if a tool is involved.
 - Refer to `STANDARDS.md` as the normative authority for all project policies and standards.
 - Feature-specific rules, visual layout constraints, temporary planning boundaries, and Git commit formatting guidelines must be specified in individual task prompts rather than added as persistent context here.
 - If a task prompt or adapter instruction conflicts with `STANDARDS.md`, report the conflict to the maintainers, align code to `STANDARDS.md`, and update the conflicting document to match.
