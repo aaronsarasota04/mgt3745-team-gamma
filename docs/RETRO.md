@@ -21,18 +21,6 @@
 | S1 — Worker latency | Partially | Warm: 20/20 requests completed under 1.5 s on a GitHub Codespace. Cold: only 5 of the planned 20 requests were measured, none over 1.5 s, and the cold result remained unresolved. The campus-Wi-Fi method was not met. | The team corrected the recorded measurement environment to datacenter/Codespace. No deployment or code change resulted; the cold-start claim remains unresolved because the sample is incomplete. |
 | S2 — ranking stability at 60 and 120 postings | No | Not run. The deployed set has 28 postings across three roles, with no role at either required size. | The team did not collect a larger role-specific set or change the ranking design. The ADR consequence remains untested rather than confirmed. |
 
-## Delegation Against Plan
-
-### [Phase 1 RACI and DACI](TEAM.md)
-
-- **AI tools — Responsible; Prince — Accountable:** The Phase 1 RACI planned bolt.new to run the specification probe in `docs/PROBE-001.md`, with Prince accountable. The delegation record for the probe was recorded separately in `docs/DDR-001.md`; that record is currently blank, while `TEAM.md` says Prince actually ran the probe and holds the evidence.
-- **AI tools — Responsible; Aaron — Accountable — standards:** The Phase 1 RACI assigned AI responsibility for `context/STANDARDS.md` and `context/TOOLS.md`, while Aaron was the human co-implementer accountable in the relevant row. `docs/DDR-003.md` records Gemini, Copilot, and GPT 5.6 Luna drafting the team standards and agent instructions, with Aaron accountable for conflict resolution and consistency; the resulting standards were reviewed through a pull request.
-- **AI tools — Responsible; Ryan — Accountable — Gate:** `docs/DDR-002.md`, authored by Ryan, records Claude drafting the Gate in `context/ARCHITECTURE.md`. Ryan described himself as accountable for the resulting text and for the decisions; Ryan remained accountable for the weights, while the AI drafted wording and reasoning; Prince reviewed and corrected the team-size claim before acceptance.
-- **Plan changes:** The Phase 1 DACI selected Job search as Option A. The delegation records do not change that decision: The Gate drafting delegated writing but left the five weight decisions and fifteen score decisions to Aaron, and the team named Job search as the selected option. For execution and ownership, `TEAM.md` later records that Nuhamin left the course and that Aaron volunteered for `context/CLAUDE.md`; `docs/DDR-001.md` remained unowned even though Prince held its evidence.
-
-### Net hours delegated
-
-Across `docs/DDR-002.md` through `docs/DDR-009.md`, the logs report **24.3 net hours saved** (the absolute values of their signed Net figures: 1.7 + 4.6 + 4.2 + 3.15 + 2.0 + 1.65 + 5.5 + 1.5). `docs/DDR-001.md` has no economic-rationale or Net entry, so it adds no hours to the total.
 
 ## Stakes Resolved
 
@@ -62,3 +50,16 @@ The original prediction was 20/20 warm requests under 1.5 s on campus Wi-Fi and 
 ### Systematic prediction pattern
 
 The team's observable predictions were systematically off in two different directions: we overestimated the certainty of reaching large, controlled samples, and we underestimated delegated tools' tendency to expand a specification beyond its stated stack and data sources. The ranking and cold-start stakes were planned more precisely than the available posting set and stable measurement environment could support, so uncertainty was often recorded as a future result rather than resolved in the test. Conversely, Prince's Phase 1 prediction correctly identified delegated-tool expansion, while the scaffold, frameworks, and generated data it produced showed that “no dependency” and “no invented data” are not sufficient delegation constraints. Retroactively, the team should treat measurable infrastructure thresholds and generated scaffolding as separate risks: require the dataset and runtime method before committing to thresholds, and require a file/dependency diff before accepting delegated output.
+
+## Delegation Against Plan
+
+### [Phase 1 RACI and DACI](TEAM.md)
+
+- **AI tools — Responsible; Prince — Accountable:** The Phase 1 RACI planned bolt.new to run the specification probe in `docs/PROBE-001.md`, with Prince accountable. The delegation record for the probe was recorded separately in `docs/DDR-001.md`; that record is currently blank, while `TEAM.md` says Prince actually ran the probe and holds the evidence.
+- **AI tools — Responsible; Aaron — Accountable — standards:** The Phase 1 RACI assigned AI responsibility for `context/STANDARDS.md` and `context/TOOLS.md`, while Aaron was the human co-implementer accountable in the relevant row. `docs/DDR-003.md` records Gemini, Copilot, and GPT 5.6 Luna drafting the team standards and agent instructions, with Aaron accountable for conflict resolution and consistency; the resulting standards were reviewed through a pull request.
+- **AI tools — Responsible; Ryan — Accountable — Gate:** `docs/DDR-002.md`, authored by Ryan, records Claude drafting the Gate in `context/ARCHITECTURE.md`. Ryan described himself as accountable for the resulting text and for the decisions; Ryan remained accountable for the weights, while the AI drafted wording and reasoning; Prince reviewed and corrected the team-size claim before acceptance.
+- **Plan changes:** The Phase 1 DACI selected Job search as Option A. The delegation records do not change that decision: The Gate drafting delegated writing but left the five weight decisions and fifteen score decisions to Aaron, and the team named Job search as the selected option. For execution and ownership, `TEAM.md` later records that Nuhamin left the course and that Aaron volunteered for `context/CLAUDE.md`; `docs/DDR-001.md` remained unowned even though Prince held its evidence.
+
+### Net hours delegated
+
+Across `docs/DDR-002.md` through `docs/DDR-009.md`, the logs report **24.3 net hours saved** (the absolute values of their signed Net figures: 1.7 + 4.6 + 4.2 + 3.15 + 2.0 + 1.65 + 5.5 + 1.5). `docs/DDR-001.md` has no economic-rationale or Net entry, so it adds no hours to the total.
