@@ -1,8 +1,64 @@
 # ARCHITECTURE.md
 
-Accountable: Ryan Linde (Architect, Phase 1).
+Accountable: Prince Muteteke (Architect, Final). Earlier owners: Ryan Linde (Phase 1) and Aaron Rahim (Phase 2).
+
+**How to read this file.** The first three sections are current: the architecture as deployed, the ADR history, and what the measurements say about it. Everything after them is the record, kept as written. The Gate and ADR-001 describe a design that ADR-002 replaced, so read them for the reasoning and not for the current system.
+
+## Current Architecture (Final)
+
+```mermaid
+flowchart LR
+    subgraph Student["Student's browser"]
+        SP["Static skills page<br/>(HTML, CSS, JS)"]
+    end
+    subgraph CF["Cloudflare account"]
+        W["Worker<br/>GET /api/roles<br/>POST /api/gaps<br/>serves static assets"]
+        DB[("D1<br/>postings<br/>posting_skills")]
+    end
+    POST["Team-supplied synthetic<br/>posting set"]
+
+    W -- "serves page" --> SP
+    SP -- "GET /api/roles" --> W
+    SP -- "POST /api/gaps<br/>role + skills (request-scoped)" --> W
+    W -- "query postings" --> DB
+    DB -- "posting and skill data" --> W
+    POST -- "wrangler d1 execute" --> DB
+```
+
+The diagram matches `worker.js`, `public/`, `schema.sql`, `seed.sql`, and `wrangler.toml` box for box.
+
+- One Worker serves `GET /api/roles` and `POST /api/gaps`, and refuses every write method.
+- One D1 database, `gamma-postings`, holds two tables, `postings` and `posting_skills`.
+- A static page in `public/` is served by the same Worker and calls only `/api/*`.
+- The posting set is team-supplied synthetic data, loaded with `wrangler d1 execute` from `schema.sql` and `seed.sql`.
+- Nothing leaves the Cloudflare account. There is no model call and no Worker secret, and no student data is stored. Skills reach the Worker for one request and are not kept.
+- ADR-002 defers F2, F3, and F4 as complete features. The Worker already returns missing skills ordered by count, with counts and totals, which is what E9 to E11 test.
+
+The deployed URL and the account it runs from are in [README.md](../README.md). How to redeploy is in [DEPLOY.md](../docs/DEPLOY.md).
+
+## ADR History
+
+| ADR | Date | Status | Decision | Why it was written | Negative consequence named |
+|---|---|---|---|---|---|
+| ADR-001 | Phase 1 | Superseded 2026-10-22 | Build on Workers and D1 with a static page, two tables (postings and each student's skills), Gemini role suggestions, and no login | The Gate scored Build highest on fit and team capability | The posting data is a frozen snapshot, skill names do not normalise, and the endpoint has no authentication |
+| ADR-002 | 2026-10-22 | Approved (Driver Aaron Rahim, Approver Ryan Linde) | Keep student skills request-scoped, make no Gemini call, drop the unused `student_skills` table, defer F2 to F4 as complete features | ADR-001 said both that the Worker sends skills to Gemini and that nothing leaves Cloudflare, and the deployed Worker did neither | Students re-enter skills each visit, there are no role suggestions, and F2 to F4 are deferred |
+
+**What changed and why.** Two changes, both caused by checking the design against the build. On 2026-10-08 the Implementer confirmed a Gemini call that the ADR did not cover, so the Gate's control-of-user-data score for Build moved from 4 to 3, and its total from 83 to 79. The decision stayed Build. On 2026-10-22 a review found that the deployed system stored no student skills and called no model, so ADR-002 recorded the smaller system and removed the unused table. The original scores stay in git history. What did not change is the stack: Cloudflare Workers, D1, and a static page.
+
+## What the Measurements Say About This Architecture
+
+Results are from [EVALS.md](EVALS.md).
+
+- **Writes are closed.** E8 sends POST, PUT, PATCH, and DELETE to `/api/postings` and gets 405 each time. ADR-001's worst consequence, an unauthenticated and writable skill list, no longer exists because the Worker stores no student input. The Worker still has no authentication, and ADR-002's revisit trigger requires it before any real student data.
+- **Latency.** 20 of 20 warm requests returned under 1.5 s, measured from a GitHub Codespace and not campus Wi-Fi. Only 5 of the planned 20 cold requests were measured, and none was slow. The stake is not resolved.
+- **Data size.** The deployed set has 28 postings and no role has more than 12, so ADR-001's frozen-snapshot consequence is still untested. The ranking-stability stake was not run.
+- **The riskiest assumption failed, and it points at the page.** Two testers named a skill from the list, but at most one reason referred to the list, and neither found the collection date. The Worker returns the date with every result (E3), so the change belongs in the page and not the architecture.
+
+---
 
 ## The Gate: Build, Buy, or Delegate
+
+*Phase 1 record, kept as written. Wording such as "all five of us" predates Nuhamin leaving the course on 2026-10-20. "No option has been scored yet" was true when the weights were committed, before the scores below were added.*
 
 Where the Phase 2 system runs and who writes it, for the problem chosen in
 [DACI-001](../docs/DACI-001.md): a graduating CS student cannot tell which tools
@@ -92,9 +148,7 @@ than the table.
 ## ADR-001: Build on Cloudflare Workers and D1 (**Superseded by ADR-002 as of 2026-10-22**)
 
 - **Status:** Superseded by ADR-002, 2026-10-22. **Driver: Ryan Linde (Architect).**
-  **Approver: proposed Aaron Rahim; the team can name someone else in review.**
-  *An ADR without an Approver is a record of whoever typed last, so a proposed
-  name is better than a blank. Whoever approves this PR is approving that too.*
+  **Approver: proposed as Aaron Rahim in Phase 1; this file records no later agreement.**
 
 ### Context
 
@@ -199,38 +253,11 @@ Any one of these:
 - Skill normalisation turns out to need more than three weeks, at which point the
   scope question comes back to the team rather than to the Architect.
 
-## Current Architecture Diagram (ADR-002)
-
-This diagram reflects the approved Phase 2 scope and the implementation in
-`worker.js`, `public/`, `schema.sql`, `seed.sql`, and `wrangler.toml`.
-
-```mermaid
-flowchart LR
-    subgraph Student["Student's browser"]
-        SP["Static skills page<br/>(HTML, CSS, JS)"]
-    end
-    subgraph CF["Cloudflare account"]
-        W["Worker<br/>GET /api/roles<br/>POST /api/gaps<br/>serves static assets"]
-        DB[("D1<br/>postings<br/>posting_skills")]
-    end
-    POST["Team-supplied synthetic<br/>posting set"]
-
-    W -- "serves page" --> SP
-    SP -- "GET /api/roles" --> W
-    SP -- "POST /api/gaps<br/>role + skills (request-scoped)" --> W
-    W -- "query postings" --> DB
-    DB -- "posting and skill data" --> W
-    POST -- "wrangler d1 execute" --> DB
-```
-
-The browser sends entered skills to the Worker for the current gap request.
-The Worker does not persist those skills or send them to Gemini; D1 contains
-only the team's supplied posting data. F2, F3, and F4 are deferred from this
-release.
-
 ---
 
 ## Open against ADR-001(**historical**)
+
+*Kept as written on 2026-10-08. Item 1 was settled by ADR-002, which removed the Gemini call. Item 2 is closed: ADR-002 names its Approver. Item 3 is closed: FEATURES.md now has feature IDs.*
 
 Three things this record does not settle, stated rather than left blank.
 
@@ -290,9 +317,7 @@ architecture or product decision must be recorded in a subsequent ADR before
 implementation.
 
 Adding Gemini suggestions or saved student profiles also requires a follow-up
-ADR specifying the data flow, consent, retention, and deletion. If this
-proposal is approved, mark ADR-001 as **Superseded by ADR-002**; until then,
-ADR-001 remains proposed and this record does not claim team approval.
+ADR specifying the data flow, consent, retention, and deletion. ADR-002 was approved on 2026-10-22, and ADR-001 is marked **Superseded by ADR-002**.
 
 ### Consequences
 
