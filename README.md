@@ -8,7 +8,7 @@ A student picks a target role, types the skills they already have, and sees the 
 
 **Deployed:** https://mgt3745-team-gamma.mgt3745-hw5.workers.dev
 
-**Recording:** [link coming after we record]
+**Recording:** (https://drive.google.com/file/d/155_6yieDW9i1BG0HrdqXFmPL3RYBK2be/view?usp=sharing)
 
 ## Team
 
