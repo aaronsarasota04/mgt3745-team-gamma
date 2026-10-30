@@ -1,6 +1,70 @@
-# Phase 1–2 Retrospective (Draft)
+# RETRO.md
 
-## Evals Against Plan
+The Build-Measure-Learn loop closed, across all three phases. Sections follow the
+order the Phase 3 brief sets. Graded on honesty and evidence, never on whether
+the project went well.
+
+**Owners.** RAT verdict and Spec findings: Ryan (Specifier). Evals against plan,
+Stakes resolved and Delegation against plan: Aaron (Reviewer and Evaluator).
+What we would build differently is the team's; drafted below for the team to
+correct.
+
+---
+
+## 1. The RAT verdict
+
+**The assumption.** A student who sees the ranked gap list for a role can name
+the next skill they would learn and say why, without help.
+
+**Why it was the riskiest.** The Outcome in `PROJECT.md` is that more students
+leave a session able to name their next skill, the role it serves, and why. No
+interview in `USERS.md` tested a ranking. The posting set is 28 rows the team
+wrote. If a ranked list is not an answer a student can act on, the product does
+not work, and no amount of extra postings fixes it.
+
+**Result: REFUTED.** Tested 2026-10-22 against the deployed build. Prince ran
+and recorded both sessions.
+
+| | Tester 1 | Tester 2 |
+|---|---|---|
+| Role description | CS graduate, full-time software engineer | Junior, internship search |
+| Role on page | Frontend Developer | Data Analyst |
+| Named a skill in the top five | Yes (TypeScript) | Yes (SQL) |
+| Reason referred to the list | Borderline, counted Yes | **No** |
+| J1: said the postings were made up | Yes | No, assumed web-scraped |
+| J2: found the collection date | **No** | **No** |
+
+**Against the pass line, which was 2 of 2:** 1 of 2 on the RAT, and 0 of 2 if
+tester 1's reason is read strictly. He said the skill "must have been
+highlighted for a reason" and gave no count and no rank, leaning on having seen
+TypeScript in real job applications. Tester 2's reason was his own coursework
+and the general value of SQL. **Neither reason came from the list.** J1 passed 1
+of 2. J2 passed 0 of 2.
+
+**The plan was changed before the test and the change is on the record.** On
+2026-10-22, before the first session, the test went from three testers to two
+because only two were available, and the pass line moved to 2 of 2. That note is
+in `EVALS.md` above the result, dated, as the brief requires.
+
+**What the result means, in the plan's own words:** the list alone is not yet an
+answer, and the next step is the explanation around it, not more postings.
+
+**What it does not mean.** Both testers did name a skill from their own top
+five, so the ranking is being read and used. What failed is the *reason*. The
+honest reading is that the list points at the right skill and does not yet
+supply the argument for it, and two sessions cannot tell us whether the list led
+them there or merely confirmed something they already believed.
+
+**Limits, stated rather than buried.** Two testers, not three. Both friends of
+the team. One is a graduate, not a student, so he sits outside the user in
+`USERS.md`. Both named the skill ranked first, which is also the skill most
+likely to be known already. One team member ran both sessions alone, so nothing
+checks his notes. A fair version of this test needs testers nobody on the team
+knows, and a way to tell a confirmed belief from a new one.
+
+---
+
+## 2. Evals Against Plan
 
 | Check | Ran? | Result | What changed in the team's work |
 |---|---|---|---|
@@ -22,7 +86,9 @@
 | S2 — ranking stability at 60 and 120 postings | No | Not run. The deployed set has 28 postings across three roles, with no role at either required size. | The team did not collect a larger role-specific set or change the ranking design. The ADR consequence remains untested rather than confirmed. |
 
 
-## Stakes Resolved
+---
+
+## 3. Stakes Resolved
 
 ### Prince — Phase 1 bolt.new prediction stake
 
@@ -51,15 +117,85 @@ The original prediction was 20/20 warm requests under 1.5 s on campus Wi-Fi and 
 
 The team's observable predictions were systematically off in two different directions: we overestimated the certainty of reaching large, controlled samples, and we underestimated delegated tools' tendency to expand a specification beyond its stated stack and data sources. The ranking and cold-start stakes were planned more precisely than the available posting set and stable measurement environment could support, so uncertainty was often recorded as a future result rather than resolved in the test. Conversely, Prince's Phase 1 prediction correctly identified delegated-tool expansion, while the scaffold, frameworks, and generated data it produced showed that “no dependency” and “no invented data” are not sufficient delegation constraints. Retroactively, the team should treat measurable infrastructure thresholds and generated scaffolding as separate risks: require the dataset and runtime method before committing to thresholds, and require a file/dependency diff before accepting delegated output.
 
-## Delegation Against Plan
+---
+
+## 4. Delegation Against Plan
 
 ### [Phase 1 RACI and DACI](TEAM.md)
 
 - **AI tools — Responsible; Prince — Accountable:** The Phase 1 RACI planned bolt.new to run the specification probe in `docs/PROBE-001.md`, with Prince accountable. The delegation record for the probe was recorded separately in `docs/DDR-001.md`; that record is currently blank, while `TEAM.md` says Prince actually ran the probe and holds the evidence.
 - **AI tools — Responsible; Aaron — Accountable — standards:** The Phase 1 RACI assigned AI responsibility for `context/STANDARDS.md` and `context/TOOLS.md`, while Aaron was the human co-implementer accountable in the relevant row. `docs/DDR-003.md` records Gemini, Copilot, and GPT 5.6 Luna drafting the team standards and agent instructions, with Aaron accountable for conflict resolution and consistency; the resulting standards were reviewed through a pull request.
 - **AI tools — Responsible; Ryan — Accountable — Gate:** `docs/DDR-002.md`, authored by Ryan, records Claude drafting the Gate in `context/ARCHITECTURE.md`. Ryan described himself as accountable for the resulting text and for the decisions; Ryan remained accountable for the weights, while the AI drafted wording and reasoning; Prince reviewed and corrected the team-size claim before acceptance.
-- **Plan changes:** The Phase 1 DACI selected Job search as Option A. The delegation records do not change that decision: The Gate drafting delegated writing but left the five weight decisions and fifteen score decisions to Aaron, and the team named Job search as the selected option. For execution and ownership, `TEAM.md` later records that Nuhamin left the course and that Aaron volunteered for `context/CLAUDE.md`; `docs/DDR-001.md` remained unowned even though Prince held its evidence.
+- **Plan changes:** The Phase 1 DACI selected Job search as Option A. The delegation records do not change that decision: The Gate drafting delegated writing but left the five weight decisions and fifteen score decisions to Ryan (`docs/DDR-002.md`: "I made the five weight decisions and the fifteen score decisions"), and the team named Job search as the selected option. For execution and ownership, `TEAM.md` later records that Nuhamin left the course and that Aaron volunteered for `context/CLAUDE.md`; `docs/DDR-001.md` remained unowned even though Prince held its evidence.
 
 ### Net hours delegated
 
 Across `docs/DDR-002.md` through `docs/DDR-009.md`, the logs report **24.3 net hours saved** (the absolute values of their signed Net figures: 1.7 + 4.6 + 4.2 + 3.15 + 2.0 + 1.65 + 5.5 + 1.5). `docs/DDR-001.md` has no economic-rationale or Net entry, so it adds no hours to the total.
+
+---
+
+## 5. What we would build differently
+
+*Team section. Drafted by the Specifier so it is not empty; correct or replace
+anything here. Three decisions, each tied to a measurement that would have
+changed it.*
+
+**1. We would have put the exclusions inside the feature rows from the start.**
+X1 to X6 lived in their own section of `FEATURES.md`. The measurement: in HW6,
+three of us independently handed one feature's rows to an AI builder, and not
+one of those prompts carried the exclusions, because a feature-scoped prompt
+never does. One builder stood up a hosted Postgres database and 18 dependencies,
+breaking X5 and X6, having never been shown either. We fixed it for F3 in #16
+and wrote a note at the top of Exclusions, but only after three separate people
+had hit the same wall.
+
+**2. We would have tested the ranking before building it.** The measurement is
+the RAT: refuted, 2026-10-22, with both testers naming a skill from the list and
+only one giving a reason that came from it. F2 was classified Performance on the
+reasoning that "a better ranking is worth more," and its own evidence column
+admitted "No interview tested a ranking." We built the ranking anyway and tested
+it in the last week of the project. A twenty-minute paper test in Phase 1,
+showing someone a ranked list and asking why they would pick one, would have
+produced the same finding before any code existed.
+
+**3. We would not have used a frozen synthetic posting set, or we would have
+made its age impossible to miss.** Two measurements point at this. J2: neither
+tester found the collection date, although F1-4 requires it beside every result,
+its code eval passes, and DDR-004 records it on the page. And S2, the
+ranking-stability stake, could not be resolved at all, because it needed 60 and
+120 postings for a single role and our largest role has 12. A requirement can
+pass its eval and still fail its purpose; "present on the page" and "noticed by
+a user" are different claims and only one of them was ever checked.
+
+---
+
+## 6. Spec findings
+
+Every EARS change the project forced, with the pull request that made it. This
+is the Specification criterion's evidence.
+
+| # | Change | What forced it | PR |
+|---|---|---|---|
+| 1 | **F3-0** added: take the ranking from F2, do not invent one. **F3-1** tightened to cap at the ten highest ranked and to match as F1-3 requires. **F3-2** settled that exactly half is not fewer than half, and forbade warning styling that appears only below half. F3 marked subject to X5 and X6. | HW6. F3's rows went to bolt.new and Google AI Studio, one prompt each. Neither asked where the ranked skill list comes from; both invented one, and they invented different ones. | [#16](https://github.com/aaronsarasota04/mgt3745-team-gamma/pull/16) |
+| 2 | **A note added to the Exclusions section** saying every feature bound by an exclusion should name it in its own rows. | The same run. A feature-scoped prompt never carries the Exclusions section, so a builder given F3 alone was never shown X5 or X6. This finding applied to all four of us, not only to F3. | [#16](https://github.com/aaronsarasota04/mgt3745-team-gamma/pull/16) |
+| 3 | **F2-6, F2-7, F2-8** added: counts come from the posting set; a skill is not held unless the student entered it; no count is larger than the total shown. | HW6, Prince's run. Both builders invented posting data and presented it as real. One pre-filled a six-skill profile nobody entered. One displayed "27 of 6 postings (450%)". | [#20](https://github.com/aaronsarasota04/mgt3745-team-gamma/pull/20) |
+| 4 | **F7 created** as a new Performance feature with **F7-1 to F7-3**: loading and unavailable states, preset skills that neither duplicate nor overwrite, and a clear-inputs control. | HW6, Aaron's run. These first arrived as F1-11 to F1-13, inside the deployed Must-be feature. Two reviewers raised that adding rows to F1 would make the shipped build non-compliant with its own spec, and they moved to F7 before merge. | [#21](https://github.com/aaronsarasota04/mgt3745-team-gamma/pull/21) |
+| 5 | **F7-4** added: a skill entered with a slash counts as each of its parts. | Real-user validation, session 3. A tester entered `Git/GitHub` and `HTML/CSS`; the result still listed Git 11/12 and HTML 5/12 as missing. Reproduced against the deployment. F1-3 covers capitalization and whitespace and says nothing about slashes, so the build does what the row says and the row is too narrow. | this phase |
+| 6 | **F2's Kano evidence rewritten.** It read "No interview tested a ranking." | The RAT. One has now, and it refuted the assumption behind the ranking. | this phase |
+
+**The pattern across all six.** Five of the six came from handing the
+specification to something that had not been in the room: two AI builders and
+three real users. None came from a team member re-reading the file. **Every row
+we wrote looked complete to us until someone outside the team tried to satisfy
+it.**
+
+**Where the specification was weakest.** Not in what it required, but in what it
+assumed everyone already knew. F3 never said where the ranking came from because
+we knew. The exclusions sat in a section no feature-scoped prompt carries
+because we knew. F1-3 said capitalization and whitespace because the skills *we*
+typed were single words. Each gap is invisible from inside the team and obvious
+to the first outsider.
+
+**What is still open**, recorded in `FEATURES.md` under "Open against this
+specification": a ranked list is not an explanation; nothing requires the
+collection date to be *noticed*, only present; and F7 is specified and unbuilt.
