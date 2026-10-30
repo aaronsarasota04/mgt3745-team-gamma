@@ -87,6 +87,12 @@ Evidence: https://github.com/ryanlinde-gif/mgt3745-hw6
 - **X5. No third-party backend or hosted database in Phase 2.** Data lives where ADR-001 puts it. (PROBE-001 #1)
 - **X6. No front-end framework and no build step.** The page is plain HTML, CSS, and JavaScript, as STANDARDS.md requires. (PROBE-001 #5)
 
+## AI use
+
+Claude Opus 5 drafted parts of this file's Phase 3 additions: the F7-4 row, the
+rewritten F2 evidence, and the section below. The judgments behind them are
+mine, and the record is [docs/DDR-012.md](../docs/DDR-012.md).
+
 ## Open against this specification
 
 Recorded by the Specifier at the end of Phase 3, as findings rather than rows,
