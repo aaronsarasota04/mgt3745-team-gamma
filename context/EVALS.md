@@ -170,7 +170,7 @@ Agreement means both graders assign the same score.
 - **JE1 — RAT verdict.** Claim: the retrospective says the ranked list did not
   reliably make the skill choice and explanation visible, because only one of
   two testers gave a list-referential reason. Graders: Aaron and Copilot.
-- **JE2 — Net-hours calculation.** Claim: the retrospective's 32.95 net hours
+- **JE2 — Net-hours calculation.** Claim: the retrospective's 32.85 net hours
   saved is the sum of the absolute signed Net figures in DDR-001 through
   DDR-013. Graders: Aaron and Copilot.
 
