@@ -138,3 +138,46 @@ The first run, started about 5:10 PM, stopped at TIME after 6 cold requests beca
 ## Where the Stakes Disagree
 
 Prince's and Ryan's stakes measure different things, so none of them disagree. Aaron and Canon committed no stake before Phase 2 code, so there is no stake from either to compare or resolve.
+
+---
+
+## Final Resolution Appendix — 2026-10-29
+
+### Final stake states
+
+- **Prince Tight — resolved, false.** The generated app added no authentication
+  screen.
+- **Prince Loose — resolved, mostly true.** The generated app placed its 89
+  postings in a seed migration rather than inventing them directly in page code.
+- **Prince Open — resolved, true.** The app added dependencies beyond plain
+  HTML, CSS, and JavaScript.
+- **Ryan ranking stability — final unresolved/not run.** The required 60- and
+  120-posting single-role datasets do not exist, and the existing 28-posting
+  deployment was not sufficient for the stake.
+- **Ryan Worker latency — final partially resolved.** The 20 warm requests passed
+  from GitHub Codespace, while only 5 of the required 20 cold requests were
+  measured. The cold half is not confirmed, and the campus-Wi-Fi method was not
+  met.
+
+### Judgment Evals for Retrospective Claims
+
+Each claim is graded independently by two graders (AI and Human which is Copilot and Aaron). Common rubric:
+**2 = supported** when the claim follows directly from the cited evidence;
+**1 = partially supported** when the evidence establishes some but not all of
+the claim; **0 = unsupported** when the evidence does not establish the claim.
+Agreement means both graders assign the same score.
+
+- **JE1 — RAT verdict.** Claim: the retrospective says the ranked list did not
+  reliably make the skill choice and explanation visible, because only one of
+  two testers gave a list-referential reason. Graders: the user and Copilot.
+- **JE2 — Net-hours calculation.** Claim: the retrospective's 24.3 net hours
+  saved is the sum of the absolute signed Net figures in DDR-002 through
+  DDR-009. Graders: the user and Copilot.
+
+**JE1 result — 2026-10-29, Evaluator:** Supported by both graders: Aaron: 2/2
+and Copilot 2/2. Agreement: 2/2. The RAT table and limits support the stated
+conclusion.
+
+**JE2 result — 2026-10-29, Evaluator:** Supported by both graders: Aaron
+and Copilot 2/2. Agreement: 2/2. The cited absolute values sum to 24.3:
+1.7 + 4.6 + 4.2 + 3.15 + 2.0 + 1.65 + 5.5 + 1.5 = 24.3.

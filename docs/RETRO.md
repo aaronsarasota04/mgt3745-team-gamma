@@ -66,6 +66,8 @@ knows, and a way to tell a confirmed belief from a new one.
 
 ## 2. Evals Against Plan
 
+[Link to EVALS.md](../context/EVALS.md)
+
 | Check | Ran? | Result | What changed in the team's work |
 |---|---|---|---|
 | E1 — roles with postings only | Yes | Pass: 11/11 deployed code evals passed; E1 confirmed that `/api/roles` returns only roles with postings. | Nothing. The check found the implementation already matched the plan. |
@@ -82,8 +84,13 @@ knows, and a way to tell a confirmed belief from a new one.
 | RAT — ranked list helps a student choose and explain a next skill | Yes, reduced from three testers to two before the run | Did not pass: one of two testers gave a list-referential reason under the original wording (or zero under the stricter reading), so the planned 2/2 pass line was missed. | The team changed the tester plan from three to two and recorded the deviation before testing. The failed result found that the ranked list alone does not yet make the reasoning visible; no product change is recorded, so this is an unresolved product follow-up. |
 | J1 — tester identifies sample postings without prompting | Yes, as part of the two RAT sessions | Missed the 2/2 plan: 1/2 testers identified the postings as made up or a team-written sample. | Nothing in the implementation changed. The result showed that provenance was not reliably self-evident. |
 | J2 — tester finds collection age without prompting | Yes, as part of the two RAT sessions | Missed the 3/3 plan: neither tester found the collection date. | Nothing in the implementation changed. The result showed that the date being present in the code and visible on the page does not mean it is discoverable. |
-| S1 — Worker latency | Partially | Warm: 20/20 requests completed under 1.5 s on a GitHub Codespace. Cold: only 5 of the planned 20 requests were measured, none over 1.5 s, and the cold result remained unresolved. The campus-Wi-Fi method was not met. | The team corrected the recorded measurement environment to datacenter/Codespace. No deployment or code change resulted; the cold-start claim remains unresolved because the sample is incomplete. |
-| S2 — ranking stability at 60 and 120 postings | No | Not run. The deployed set has 28 postings across three roles, with no role at either required size. | The team did not collect a larger role-specific set or change the ranking design. The ADR consequence remains untested rather than confirmed. |
+| JE1 — RAT verdict | Yes | Supported by both graders at 2/2, with 2/2 agreement on 2026-10-29. | Nothing. The retrospective verdict remained within the RAT evidence and its limits. |
+| JE2 — Net-hours calculation | Yes | Supported by both graders at 2/2, with 2/2 agreement on 2026-10-29; DDR-002 through DDR-009 sum to 24.3. | Nothing. The retrospective calculation was confirmed. |
+| Ryan Worker latency — final partially resolved | Partially | Warm: 20/20 requests completed under 1.5 s on a GitHub Codespace. Cold: only 5 of the planned 20 requests were measured, none over 1.5 s, and the cold result remained unresolved. The campus-Wi-Fi method was not met. | The team corrected the recorded measurement environment to datacenter/Codespace. No deployment or code change resulted; the cold-start claim remains unresolved because the sample is incomplete. |
+| Ryan ranking stability — final unresolved/not run | No | Not run. The deployed set has 28 postings across three roles, with no role at either required size. | The team did not collect a larger role-specific set or change the ranking design. The ADR consequence remains untested rather than confirmed. |
+| Prince Tight — resolved, false | Yes | False. The generated app added no login or signup screen. | Nothing in the implementation or specification changed. |
+| Prince Loose — resolved, mostly true | Yes | Mostly true. The app generated 89 postings in a seed migration and loaded them through Supabase rather than placing them directly in page code. | The result supported tighter delegation constraints for generated data, but did not change the completed scaffold. |
+| Prince Open — resolved, true | Yes | True. The app added 18 direct packages beyond plain HTML, CSS, and JavaScript. | Dependency review became an explicit check of delegated output; the completed scaffold was unchanged. |
 
 
 ---
