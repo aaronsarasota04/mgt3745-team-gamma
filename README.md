@@ -6,7 +6,9 @@ Students cannot tell which skills the roles they want ask for. This repository h
 
 A student picks a target role, types the skills they already have, and sees the skills missing from their list, ordered by how many postings ask for each. Phase 2 deployed the first part of that: F1, the skill gap for a role.
 
-**Deployed:** https://mgt3745-team-gamma.ryanlindebusiness.workers.dev
+**Deployed:** https://mgt3745-team-gamma.mgt3745-hw5.workers.dev
+
+**Recording:** [link coming after we record]
 
 ## Team
 
