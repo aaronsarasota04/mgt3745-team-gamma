@@ -169,15 +169,18 @@ Agreement means both graders assign the same score.
 
 - **JE1 — RAT verdict.** Claim: the retrospective says the ranked list did not
   reliably make the skill choice and explanation visible, because only one of
-  two testers gave a list-referential reason. Graders: the user and Copilot.
-- **JE2 — Net-hours calculation.** Claim: the retrospective's 24.3 net hours
-  saved is the sum of the absolute signed Net figures in DDR-002 through
-  DDR-009. Graders: the user and Copilot.
+  two testers gave a list-referential reason. Graders: Aaron and Copilot.
+- **JE2 — Net-hours calculation.** Claim: the retrospective's 32.85 net hours
+  saved is the sum of the absolute signed Net figures in DDR-001 through
+  DDR-013. Graders: Aaron and Copilot.
 
 **JE1 result — 2026-10-29, Evaluator:** Supported by both graders: Aaron: 2/2
 and Copilot 2/2. Agreement: 2/2. The RAT table and limits support the stated
-conclusion.
+conclusion. Neither grader was present for the two sessions; Prince ran both
+sessions and recorded the notes being graded. JE1 confirms that the
+conclusion follows from the recorded evidence, but it does not independently
+verify the underlying sessions.
 
 **JE2 result — 2026-10-29, Evaluator:** Supported by both graders: Aaron
-and Copilot 2/2. Agreement: 2/2. The cited absolute values sum to 24.3:
-1.7 + 4.6 + 4.2 + 3.15 + 2.0 + 1.65 + 5.5 + 1.5 = 24.3.
+and Copilot 2/2. Agreement: 2/2. The cited absolute values sum to 32.95:
+0.1 + 1.7 + 4.6 + 4.2 + 3.15 + 2.0 + 1.65 + 5.5 + 1.5 + 0.5 + 1.5 + 2.8 + 3.75 = 32.95.
